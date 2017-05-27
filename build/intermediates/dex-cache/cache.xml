@@ -75,6 +75,33 @@
     </item>
     <item
         is-multidex="true"
+        jar="C:\Users\myRoom\.gradle\caches\modules-2\files-2.1\com.github.bumptech.glide\annotations\4.0.0-RC0\d5dd0afc50069b7fa0fc12ac85f91efa8df4db67\annotations-4.0.0-RC0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="d5dd0afc50069b7fa0fc12ac85f91efa8df4db67">
+        <dex dex="C:\Users\myRoom\AndroidStudioProjects\AndroidProject\app\build\intermediates\transforms\dex\debug\folders\1000\10\annotations-4.0.0-RC0_887d9e3cf03f7e3e7dc1a045440ee67afcf27791\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\myRoom\.android\build-cache\727408188cc8deaf531c8a643fec243a463af3fb\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="914f5d3e3ace66080e59613708f06d129a222e25">
+        <dex dex="C:\Users\myRoom\AndroidStudioProjects\AndroidProject\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_d4132f8ce675e410b2978799dfb0953522c94ea5\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\myRoom\.gradle\caches\modules-2\files-2.1\com.github.bumptech.glide\gifdecoder\4.0.0-RC0\c64f5d4805b528de434a5a8bb9a8091b6f9cd1a7\gifdecoder-4.0.0-RC0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="c64f5d4805b528de434a5a8bb9a8091b6f9cd1a7">
+        <dex dex="C:\Users\myRoom\AndroidStudioProjects\AndroidProject\app\build\intermediates\transforms\dex\debug\folders\1000\10\gifdecoder-4.0.0-RC0_8068056b2d82d6fb89e9040c6dd19745f6bf52c1\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
         jar="C:\Users\myRoom\.android\build-cache\f40dd22d96e44db545769f32d3cef2652f955ea6\output\jars\classes.jar"
         jumboMode="true"
         optimize="true"
@@ -111,6 +138,15 @@
     </item>
     <item
         is-multidex="true"
+        jar="C:\Users\myRoom\.gradle\caches\modules-2\files-2.1\com.github.bumptech.glide\glide\4.0.0-RC0\eb86cd1d96acc30dcebf338abaf2c62ca28bf355\glide-4.0.0-RC0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="eb86cd1d96acc30dcebf338abaf2c62ca28bf355">
+        <dex dex="C:\Users\myRoom\AndroidStudioProjects\AndroidProject\app\build\intermediates\transforms\dex\debug\folders\1000\10\glide-4.0.0-RC0_79d2dae7965bc885acdfbb4195f46ed7110a9d4e\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
         jar="C:\Users\myRoom\.android\build-cache\b75337e4bb82f625cf025c79448cbf657f355a9c\output\jars\classes.jar"
         jumboMode="true"
         optimize="true"
@@ -135,6 +171,24 @@
         revision="25.0.2"
         sha1="150252b33b00274cc868578ade018fda0d43a3eb">
         <dex dex="C:\Users\myRoom\AndroidStudioProjects\AndroidProject\app\build\intermediates\pre-dexed\debug\classes_f25724ccc6a3015d94192567798228e8a73521c8.jar" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\myRoom\.android\build-cache\af7eeb5bfc94afcf475965df003375b05e6cc53d\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="2c8af48ae86723e44761977b30d63df71a00ef4e">
+        <dex dex="C:\Users\myRoom\AndroidStudioProjects\AndroidProject\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_9a7c0d9db50c9b7bab8774addf9206dc8cb85bd2\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\myRoom\.gradle\caches\modules-2\files-2.1\com.github.bumptech.glide\disklrucache\4.0.0-RC0\46d23cdc19155c5f0d47ece99ca1c421346c1509\disklrucache-4.0.0-RC0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="46d23cdc19155c5f0d47ece99ca1c421346c1509">
+        <dex dex="C:\Users\myRoom\AndroidStudioProjects\AndroidProject\app\build\intermediates\transforms\dex\debug\folders\1000\10\disklrucache-4.0.0-RC0_9aec5c425f1d9765dab5045bf3716811e745295c\classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -196,7 +250,7 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="27782302f8485725c9576a7c8a15987391223c90">
+        sha1="308bc42c3e228d6dfa38fea55956c814168195e0">
         <dex dex="C:\Users\myRoom\AndroidStudioProjects\AndroidProject\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_f8d6af8018bef42e05779849b51c8d5bb5cff285\classes.dex" />
     </item>
     <item
