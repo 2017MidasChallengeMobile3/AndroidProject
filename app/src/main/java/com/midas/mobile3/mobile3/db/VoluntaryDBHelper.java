@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import com.midas.mobile3.mobile3.db_model.Voluntary;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 
 
 /**
@@ -31,14 +32,14 @@ public class VoluntaryDBHelper extends SQLiteOpenHelper {
         // Create a table to hold waitlist data
         final String SQL_CREATE_VOLUNTARY_TABLE = "CREATE TABLE VOLUNTARY (" +
                 "vs_code INTEGER PRIMARY KEY AUTOINCREMENT," +
-                "vs_title VARCHAR(100) NOT NULL UNIQUE," +
+                "vs_title VARCHAR(100) NOT NULL," +
                 "vs_req_start_date TIMESTAMP NOT NULL," +
                 "vs_req_end_date TIMESTAMP NOT NULL," +
                 "vs_exc_start_date TIMESTAMP NOT NULL," +
                 "vs_exc_end_date TIMESTAMP NOT NULL," +
                 "vs_point INTEGER NOT NULL," +
                 "vs_content VARCHAR(3000) NOT NULL," +
-                "vs_sort INTEGER NOT NULL" +
+                "vs_sort INTEGER NOT NULL," +
                 "vs_img_url VARCHAR(500) NOT NULL" +
                 "); ";
 
@@ -63,7 +64,7 @@ public class VoluntaryDBHelper extends SQLiteOpenHelper {
         // DB에 입력한 값으로 행 추가
         //timestamp가 ''가 들어가나 안들어가나 모르겠다!.
 
-        db.execSQL("INSERT INTO USER(vs_title, vs_req_start_date, vs_req_end_date, vs_exc_start_date, vs_exc_end_date, vs_point, vs_content, vs_sort, vs_img_url) " +
+        db.execSQL("INSERT INTO VOLUNTARY(vs_title, vs_req_start_date, vs_req_end_date, vs_exc_start_date, vs_exc_end_date, vs_point, vs_content, vs_sort, vs_img_url) " +
                 "VALUES ('" + title + "', '" + req_start_date + "', '" + req_end_date +"', '" + exc_start_date + "', '" + exc_end_date + "', "
                 + point + ", '" + content + "', " + sort + ", '" + imgUrl + "');");
         db.close();
@@ -85,7 +86,7 @@ public class VoluntaryDBHelper extends SQLiteOpenHelper {
 
         // DB에 있는 데이터를 쉽게 처리하기 위해 Cursor를 사용하여 테이블에 있는 모든 데이터 출력
         Cursor cursor = db.rawQuery("SELECT * " +
-                "FROM VOLUNTARY" +
+                "FROM VOLUNTARY " +
                 "WHERE vs_title = " + title, null);
 
         if( cursor.getCount() > 0 ){
@@ -115,7 +116,7 @@ public class VoluntaryDBHelper extends SQLiteOpenHelper {
 
         // DB에 있는 데이터를 쉽게 처리하기 위해 Cursor를 사용하여 테이블에 있는 모든 데이터 출력
         Cursor cursor = db.rawQuery("SELECT * " +
-                "FROM VOLUNTARY" +
+                "FROM VOLUNTARY " +
                 "WHERE vs_code = " + vsCode, null);
 
         if( cursor.getCount() > 0 ){
@@ -132,6 +133,43 @@ public class VoluntaryDBHelper extends SQLiteOpenHelper {
                 result.voluntaryContent = cursor.getString(7);
                 result.voluntarySort = cursor.getInt(8);
                 result.voluntaryImg = cursor.getString(9);
+            }
+        }
+
+        return result;
+    }
+
+    public ArrayList<Voluntary> selectVoluntaryInfoIng() {
+        // 읽기가 가능하게 DB 열기
+        ArrayList<Voluntary> result = null;
+        SQLiteDatabase db = getReadableDatabase();
+
+        // DB에 있는 데이터를 쉽게 처리하기 위해 Cursor를 사용하여 테이블에 있는 모든 데이터 출력
+        Cursor cursor = db.rawQuery("SELECT * " +
+                "FROM VOLUNTARY " +
+                "WHERE vs_req_end_date >= CURRENT_TIMESTAMP " +
+                "ORDER BY vs_req_end_date", null);
+
+        if( cursor.getCount() > 0 ){
+            result = new ArrayList<Voluntary>();
+
+            Voluntary node = null;
+
+            while (cursor.moveToNext()) {
+                node = new Voluntary();
+
+                node.voluntaryCode = cursor.getInt(0);
+                node.voluntaryTitle = cursor.getString(1);
+                node.voluntaryReqStartDate = Timestamp.valueOf(cursor.getString(2));
+                node.voluntaryReqEndDate = Timestamp.valueOf(cursor.getString(3));
+                node.voluntaryExcStartDate = Timestamp.valueOf(cursor.getString(4));
+                node.voluntaryExcEndDate = Timestamp.valueOf(cursor.getString(5));
+                node.voluntaryPoint= cursor.getInt(6);
+                node.voluntaryContent = cursor.getString(7);
+                node.voluntarySort = cursor.getInt(8);
+                node.voluntaryImg = cursor.getString(9);
+
+                result.add(node);
             }
         }
 

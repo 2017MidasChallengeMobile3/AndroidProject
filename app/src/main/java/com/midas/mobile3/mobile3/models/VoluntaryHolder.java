@@ -42,8 +42,7 @@ public class VoluntaryHolder extends RecyclerView.ViewHolder{
 
         txtTitle.setText(data.voluntaryTitle);
         txtDate.setText(data.voluntaryReqStartDate+ " ~ " + data.voluntaryReqEndDate);
-        txtPoint.setText(data.voluntaryPoint);
+        txtPoint.setText(data.voluntaryPoint+"P");
         Glide.with(mcon).load(data.voluntaryImg).into(img);
-
     }
 }

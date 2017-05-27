@@ -7,8 +7,11 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.midas.mobile3.mobile3.R;
+import com.midas.mobile3.mobile3.db.VoluntaryDBHelper;
 import com.midas.mobile3.mobile3.db_model.Voluntary;
 import com.midas.mobile3.mobile3.models.VoluntaryHolder;
+
+import java.util.ArrayList;
 
 /**
  * Created by myRoom on 2017-05-27.
@@ -16,10 +19,19 @@ import com.midas.mobile3.mobile3.models.VoluntaryHolder;
 
 public class VoluntaryAdapter extends RecyclerView.Adapter<VoluntaryHolder>{
 
+    ArrayList<Voluntary> voluntaryList;
     Context mcon;
 
     public VoluntaryAdapter(Context mcon){
         this.mcon=mcon;
+        // 마감임박순 -> 신청기간 안지난것만
+        VoluntaryDBHelper vdbh  = new VoluntaryDBHelper(mcon);
+        this.voluntaryList = vdbh.selectVoluntaryInfoIng();
+        if( this.voluntaryList != null ){
+            for(int i=0; i<this.voluntaryList.size(); i++){
+                System.out.println(this.voluntaryList.get(i));
+            }
+        }
     }
 
 
@@ -31,12 +43,15 @@ public class VoluntaryAdapter extends RecyclerView.Adapter<VoluntaryHolder>{
 
     @Override
     public void onBindViewHolder(VoluntaryHolder holder, int position) {
-        // position 째 데이터를 받아와서
-        // holder. setData 호출
+        holder.setData(voluntaryList.get(position));
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        if( this.voluntaryList == null ) {
+            voluntaryList = new ArrayList<Voluntary>();
+        }
+
+        return voluntaryList.size();
     }
 }
