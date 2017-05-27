@@ -10,18 +10,12 @@ import com.midas.mobile3.mobile3.Common;
 import com.midas.mobile3.mobile3.R;
 import com.midas.mobile3.mobile3.db.CompleteDBHelper;
 import com.midas.mobile3.mobile3.db.RequestDBHelper;
-import com.midas.mobile3.mobile3.db.RequestThing;
-import com.midas.mobile3.mobile3.db.UserDBHelper;
 import com.midas.mobile3.mobile3.db.VoluntaryDBHelper;
 import com.midas.mobile3.mobile3.db_model.ActiveThing;
 import com.midas.mobile3.mobile3.db_model.Complete;
 import com.midas.mobile3.mobile3.db_model.Request;
-import com.midas.mobile3.mobile3.db_model.Voluntary;
 import com.midas.mobile3.mobile3.models.ActiveThingHolder;
-import com.midas.mobile3.mobile3.models.VoluntaryHolder;
 
-import java.sql.Date;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
