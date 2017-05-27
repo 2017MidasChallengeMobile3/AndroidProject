@@ -109,6 +109,36 @@ public class VoluntaryDBHelper extends SQLiteOpenHelper {
         return result;
     }
 
+    public Voluntary selectVoluntaryInfoId(String code) {
+        // 읽기가 가능하게 DB 열기
+        Voluntary result = null;
+        SQLiteDatabase db = getReadableDatabase();
+
+        // DB에 있는 데이터를 쉽게 처리하기 위해 Cursor를 사용하여 테이블에 있는 모든 데이터 출력
+        Cursor cursor = db.rawQuery("SELECT * " +
+                "FROM VOLUNTARY " +
+                "WHERE vs_code = " + code, null);
+
+        if( cursor.getCount() > 0 ){
+            result = new Voluntary();
+
+            while (cursor.moveToNext()) {
+                result.voluntaryCode = cursor.getInt(0);
+                result.voluntaryTitle = cursor.getString(1);
+                result.voluntaryReqStartDate = Timestamp.valueOf(cursor.getString(2));
+                result.voluntaryReqEndDate = Timestamp.valueOf(cursor.getString(3));
+                result.voluntaryExcStartDate = Timestamp.valueOf(cursor.getString(4));
+                result.voluntaryExcEndDate = Timestamp.valueOf(cursor.getString(5));
+                result.voluntaryPoint= cursor.getInt(6);
+                result.voluntaryContent = cursor.getString(7);
+                result.voluntarySort = cursor.getInt(8);
+                result.voluntaryImg= cursor.getString(9);
+            }
+        }
+
+        return result;
+    }
+
     public Voluntary selectVoluntaryInfo(int vsCode) {
         // 읽기가 가능하게 DB 열기
         Voluntary result = null;

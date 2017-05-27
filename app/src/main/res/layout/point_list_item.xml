@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="90dp"
     android:orientation="horizontal">
-    <!--아이디 지정해서 바꾸시면 됩니다!-->
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

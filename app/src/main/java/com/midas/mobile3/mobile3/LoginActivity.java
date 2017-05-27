@@ -534,7 +534,7 @@ public class LoginActivity extends AppCompatActivity {
         }
 
 
-        vdbh.insert("행궁아해꿈누리 전통놀이터 관리봉사(오전)", timestamp1, timestamp2, timestamp3, timestamp4, 270, volContent, 0, "http://www.noriyon.co.kr/data/file/sub03_01/thumb-3552730100_JFz92A8X_11050806_742978235824004_1880866285416581510_n_600x338.jpg");
+        vdbh.insert("행궁아해꿈누리 관리봉사", timestamp1, timestamp2, timestamp3, timestamp4, 270, volContent, 0, "http://www.noriyon.co.kr/data/file/sub03_01/thumb-3552730100_JFz92A8X_11050806_742978235824004_1880866285416581510_n_600x338.jpg");
 
 
         str1="2017-03-21 00:00:00.000";
