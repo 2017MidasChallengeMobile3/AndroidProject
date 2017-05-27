@@ -13,10 +13,12 @@ import android.widget.Toast;
 
 import com.midas.mobile3.mobile3.db.CompleteDBHelper;
 import com.midas.mobile3.mobile3.db.DonationDBHelper;
+import com.midas.mobile3.mobile3.db.ReportDBHelper;
 import com.midas.mobile3.mobile3.db.UserDBHelper;
 import com.midas.mobile3.mobile3.db.VoluntaryDBHelper;
 import com.midas.mobile3.mobile3.db_model.User;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
@@ -689,6 +691,16 @@ public class LoginActivity extends AppCompatActivity {
         DonationDBHelper ddbh = new DonationDBHelper(this);
         ddbh.insert(Common.userCode, 1, 100);
         ddbh.insert(timestamp, Common.userCode, 3, 200);
+
+
+        ArrayList<String> imgUrlList = new ArrayList<String>();
+        imgUrlList.add("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS0pdQnAZ86GqM81IGaj9ODPYR7bgVG4_kgocVhXiIVrD5JtoTKGA");
+        imgUrlList.add("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJAqvBcgMc3hOpqI4FoxzK68Sh34gkdemoHrsrf7hMQoFaHD_Nhg");
+        imgUrlList.add("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS0pdQnAZ86GqM81IGaj9ODPYR7bgVG4_kgocVhXiIVrD5JtoTKGA");
+
+
+        ReportDBHelper rdbh = new ReportDBHelper(this);
+        rdbh.insertReport(3, "우앙 신나는 연탄나르기", imgUrlList);
     }
 
     private void setLayout(){

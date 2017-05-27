@@ -12,6 +12,7 @@ import com.bumptech.glide.Glide;
 import com.midas.mobile3.mobile3.Common;
 import com.midas.mobile3.mobile3.MainActivity;
 import com.midas.mobile3.mobile3.R;
+import com.midas.mobile3.mobile3.ReportContentsActivity;
 import com.midas.mobile3.mobile3.VoluntaryFragment;
 import com.midas.mobile3.mobile3.VonuntaryContentActivity;
 import com.midas.mobile3.mobile3.db_model.ReportThing;
@@ -40,7 +41,7 @@ public class ReportThingHolder extends RecyclerView.ViewHolder{
         itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(mcon, VonuntaryContentActivity.class);
+                Intent i = new Intent(mcon, ReportContentsActivity.class);
                 i.putExtra("data",data);
                 mcon.startActivity(i);
             }
