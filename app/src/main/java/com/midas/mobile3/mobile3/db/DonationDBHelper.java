@@ -90,7 +90,7 @@ public class DonationDBHelper extends SQLiteOpenHelper {
                 "FROM DONATION" +
                 "WHERE user_code = " + userCode, null);
 
-        if (cursor.getCount() > 0) {
+        if (cursor.getCount() > 0) {//
             result = new ArrayList<Donation>();
 
             Donation node = null;
