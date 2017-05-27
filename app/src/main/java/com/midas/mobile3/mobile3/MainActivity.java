@@ -209,8 +209,19 @@ public class MainActivity extends AppCompatActivity {
         });
 
         final LinearLayout btnVolAdd = (LinearLayout) dialog.findViewById(R.id.admin_btn_voluntary_add);
+        btnVolAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, AdminAddActivity.class));
+            }
+        });
         final LinearLayout btnBAdd = (LinearLayout) dialog.findViewById(R.id.admin_btn_business_add);
-
+        btnBAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, AdminBusinessActivity.class));
+            }
+        });
 
         dialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
             @Override
