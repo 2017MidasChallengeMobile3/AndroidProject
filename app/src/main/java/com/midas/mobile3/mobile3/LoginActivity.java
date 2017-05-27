@@ -669,32 +669,6 @@ public class LoginActivity extends AppCompatActivity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                 // TODO : 실제 로그인 해야됨
                 //if(isChecked(editID.getText().toString()).booleanValue()==true) {//로그인 성공.
                     Intent i = new Intent(LoginActivity.this, MainActivity.class);
