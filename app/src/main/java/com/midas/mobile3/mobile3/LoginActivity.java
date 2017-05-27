@@ -11,7 +11,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.midas.mobile3.mobile3.db.UserDBHelper;
 import com.midas.mobile3.mobile3.db.VoluntaryDBHelper;
+import com.midas.mobile3.mobile3.db_model.User;
 
 import java.util.Date;
 import java.sql.Timestamp;
@@ -562,6 +564,7 @@ public class LoginActivity extends AppCompatActivity {
             Date parsedDate = dateFormat.parse(str3);
             timestamp3 = new java.sql.Timestamp(parsedDate.getTime());
         }catch(Exception e){//this generic but you can control another types of exception
+
         }
 
         try{
@@ -667,11 +670,15 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // TODO : 실제 로그인 해야됨
-
-                Intent i = new Intent(LoginActivity.this,MainActivity.class);
-                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(i);
+                if(isChecked(editID.getText().toString()).booleanValue()==true) {//로그인 성공.
+                    Intent i = new Intent(LoginActivity.this, MainActivity.class);
+                    i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(i);
+                }
+                else{//로그인 실패.
+                    Toast.makeText(LoginActivity.this,"아이디 혹은 비밀번호가 틀립니다.",Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -689,5 +696,22 @@ public class LoginActivity extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
 
+    }
+
+    public Boolean isChecked(String id){
+        UserDBHelper udbh = new UserDBHelper(this);
+        User user = new User();
+        user = udbh.selectUserInfo(id);
+        if(user==null){
+            return false;
+        }
+        else{
+            if(user.userPW.equals(editPassword.getText().toString())){
+                return true;
+            }
+            else{
+                return false;
+            }
+        }
     }
 }
