@@ -29,7 +29,7 @@ public class ReportDBHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         // Create a table to hold waitlist data
-        final String SQL_CREATE_USER_TABLE = "CREATE TABLE REPORT (" +
+        final String SQL_CREATE_REPORT_TABLE = "CREATE TABLE REPORT (" +
                 "report_code INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "business_code INTEGER NOT NULL," +
                 "report_content VARCHAR(500) NOT NULL," +
@@ -42,7 +42,7 @@ public class ReportDBHelper extends SQLiteOpenHelper {
                 "FOREIGN KEY (business_code) REFERENCES BUSINESS (business_code) ON DELETE CASCADE" +
                 "); ";
 
-        sqLiteDatabase.execSQL(SQL_CREATE_USER_TABLE);
+        sqLiteDatabase.execSQL(SQL_CREATE_REPORT_TABLE);
     }
 
     @Override
@@ -179,13 +179,5 @@ public class ReportDBHelper extends SQLiteOpenHelper {
             }
         }
         return result;
-    }
-
-    //update
-    public void updateUserCurPoint(int code, int point) {
-        SQLiteDatabase db = getWritableDatabase();
-        // 입력한 항목과 일치하는 행의 가격 정보 수정
-        db.execSQL("UPDATE USER SET user_cur_point = " + point + " WHERE user_code = " + code + ";");
-        db.close();
     }
 }
