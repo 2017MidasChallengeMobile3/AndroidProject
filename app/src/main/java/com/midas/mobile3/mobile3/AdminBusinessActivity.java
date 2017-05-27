@@ -3,13 +3,13 @@ package com.midas.mobile3.mobile3;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class AdminVoluntaryActivity extends AppCompatActivity {
+import com.midas.mobile3.mobile3.R;
 
-
+public class AdminBusinessActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_admin_voluntary);
+        setContentView(R.layout.activity_admin_business);
     }
 }

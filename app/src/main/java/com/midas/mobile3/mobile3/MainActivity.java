@@ -1,5 +1,8 @@
 package com.midas.mobile3.mobile3;
 
+import android.app.Dialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -12,6 +15,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.SeekBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.midas.mobile3.mobile3.db.BusinessDBHelper;
@@ -84,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //tabLayout.getPointerIcon()
-
+                getAdminDialog();
             }
         });
     }
@@ -186,6 +192,34 @@ public class MainActivity extends AppCompatActivity {
         bContent="홀로 사는 어르신의 건강증진을 도모하고자 광주 서구 지역에 거주중인 독거어르신 댁에 주1회 밑반찬을 배달 드리고자 합니다.\n";
         bUrl="http://happybean.phinf.naver.net/20170207_101/hlog_s03859_1486424923441iU6GA_JPEG/%BB%E7%C1%F8_3.JPG?type=w720";
         bdbh.insert(bName,bContent,4000000,0,bUrl);
+    }
+
+
+
+    private void getAdminDialog() {
+        final Dialog dialog = new Dialog(this);
+        dialog.setContentView(R.layout.dialog_admin);
+
+        final LinearLayout btnUser = (LinearLayout) dialog.findViewById(R.id.admin_btn_voluntary);
+        btnUser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, AdminVoluntaryActivity.class));
+            }
+        });
+
+        final LinearLayout btnVolAdd = (LinearLayout) dialog.findViewById(R.id.admin_btn_voluntary_add);
+        final LinearLayout btnBAdd = (LinearLayout) dialog.findViewById(R.id.admin_btn_business_add);
+
+
+        dialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+            @Override
+            public void onCancel(DialogInterface dialog) {
+
+            }
+        });
+
+        dialog.show();
     }
 }
 
