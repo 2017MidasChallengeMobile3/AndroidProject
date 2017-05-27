@@ -12,13 +12,17 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
+import com.midas.mobile3.mobile3.db.CompleteDBHelper;
 import com.midas.mobile3.mobile3.db.RequestDBHelper;
 import com.midas.mobile3.mobile3.db.UserDBHelper;
 import com.midas.mobile3.mobile3.db.VoluntaryDBHelper;
 import com.midas.mobile3.mobile3.db.RequestDBHelper;
+import com.midas.mobile3.mobile3.db_model.Complete;
+import com.midas.mobile3.mobile3.db_model.Request;
 import com.midas.mobile3.mobile3.db_model.Voluntary;
 import com.squareup.picasso.Picasso;
+
+import java.util.ArrayList;
 
 import jp.wasabeef.picasso.transformations.BlurTransformation;
 
@@ -30,7 +34,7 @@ public class VonuntaryContentActivity extends AppCompatActivity {
     TextView txtTitle, txtExtDate, txtReqDate, txtPoint, txtContents;
     Button btnRequest;
 
-    boolean isDone = false;
+    int status = 0; // 0 : 신청가능, 1 : 이미 신청 중, 2 : 완료한 것
 
     FloatingActionButton fab;
 
@@ -40,7 +44,26 @@ public class VonuntaryContentActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         mcon = this;
         data = (Voluntary)getIntent().getSerializableExtra("data");
+
         // TODO : 봉사활동 했는지 안했는지 가져와야됨
+        RequestDBHelper rdbh = new RequestDBHelper(mcon);
+        ArrayList<Request> requestList = rdbh.selectRequest(Common.userCode, data.voluntaryCode);
+
+        System.out.println(requestList);
+
+        if(requestList != null && requestList.size() > 0){
+           status = 1;
+        }
+
+        CompleteDBHelper cdbh = new CompleteDBHelper(mcon);
+        ArrayList<Complete> completeList = cdbh.selectComplete(Common.userCode, data.voluntaryCode);
+
+        if(completeList != null && completeList.size() > 0){
+            status = 2;
+        }
+
+        System.out.println("STATUS : " + status);
+
         setLayout();
     }
 
@@ -53,8 +76,8 @@ public class VonuntaryContentActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         imgTitle = (ImageView)findViewById(R.id.voluntary_contents_img_title);
-        if(imgTitle!=null) Picasso.with(this).load(data.voluntaryImg)
-                .transform(new BlurTransformation(this,5)).into(imgTitle);
+        if(data.voluntaryImg!=null && !data.voluntaryImg.equals(""))
+            Picasso.with(this).load(data.voluntaryImg).into(imgTitle);
 
         txtTitle = (TextView)findViewById(R.id.voluntary_contents_title);
         txtTitle.setText(data.voluntaryTitle);
@@ -87,10 +110,28 @@ public class VonuntaryContentActivity extends AppCompatActivity {
                 requestVoluntary();
             }
         });
+
+        prepareRequestVoluntary();
+    }
+
+    private void prepareRequestVoluntary(){
+        if(status == 0){ // 신청가능
+            fab.setImageResource(R.drawable.ic_add_black_24dp);
+            btnRequest.setText("봉사활동 신청");
+        }
+        else if(status == 1){ // 이미 신청되어있음
+            fab.setImageResource(R.drawable.ic_remove_black_24dp);
+            btnRequest.setText("봉사활동 취소");
+        }
+        else if(status == 2){ // 완료된 봉사활동
+            fab.setVisibility(View.INVISIBLE);
+            btnRequest.setText("이미 완료한 봉사활동");
+            btnRequest.setClickable(false);
+        }
     }
 
     private void requestVoluntary(){
-        if(!isDone) {
+        if(status == 0){ // 신청가능
             //봉사활동 신청이 안되어 있을 경우
             RequestDBHelper rdbh = new RequestDBHelper(mcon);
             rdbh.insert(Common.userCode, data.voluntaryCode);
@@ -99,8 +140,10 @@ public class VonuntaryContentActivity extends AppCompatActivity {
                     .setAction("Action", null).show();
             fab.setImageResource(R.drawable.ic_remove_black_24dp);
             btnRequest.setText("봉사활동 취소");
-            isDone=true;
-        }else{
+
+            status = 1;
+        }
+        else if(status == 1){ // 이미 신청되어있음
             RequestDBHelper rdbh = new RequestDBHelper(mcon);
             rdbh.delete(Common.userCode, data.voluntaryCode);
 
@@ -108,9 +151,14 @@ public class VonuntaryContentActivity extends AppCompatActivity {
                     .setAction("Action", null).show();
             fab.setImageResource(R.drawable.ic_add_black_24dp);
             btnRequest.setText("봉사활동 신청");
-            isDone=false;
+
+            status = 0;
         }
-        // TODO : DBupdate
+        else if(status == 2){ // 완료된 봉사활동
+            fab.setVisibility(View.INVISIBLE);
+            btnRequest.setText("이미 완료한 봉사활동");
+            btnRequest.setClickable(false);
+        }
     }
 
     @Override

@@ -54,7 +54,7 @@ public class VoluntaryHolder extends RecyclerView.ViewHolder{
         txtTitle.setText(data.voluntaryTitle);
         txtDate.setText(Common.dateToString(data.voluntaryReqStartDate) + " ~ " + Common.dateToString(data.voluntaryReqEndDate));
         txtPoint.setText(data.voluntaryPoint+"P");
-        Picasso.with(mcon).load(data.voluntaryImg)
-                .transform(new BlurTransformation(mcon,5)).into(img);
+        if(data.voluntaryImg!=null && !data.voluntaryImg.equals(""))
+            Picasso.with(mcon).load(data.voluntaryImg).into(img);
     }
 }

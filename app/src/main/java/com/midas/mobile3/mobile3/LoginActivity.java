@@ -673,8 +673,8 @@ public class LoginActivity extends AppCompatActivity {
         }catch(Exception e){//this generic but you can control another types of exception
         }
 
-        cdbh.insert(timestamp, Common.userCode, 3);
-        cdbh.insert(Common.userCode, 2);
+        cdbh.insert(timestamp, Common.userCode, 8);
+        cdbh.insert(Common.userCode, 7);
 
         str="2017-05-05 00:00:00.000";
         timestamp = null;
