@@ -1,5 +1,6 @@
 package com.midas.mobile3.mobile3;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -10,10 +11,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.midas.mobile3.mobile3.db.RequestDBHelper;
 import com.midas.mobile3.mobile3.db_model.Voluntary;
 
 public class VonuntaryContentActivity extends AppCompatActivity {
 
+    Context mcon;
     Voluntary data;
     ImageView imgTitle;
     TextView txtTitle, txtExtDate, txtReqDate, txtPoint, txtContents;
@@ -26,6 +29,7 @@ public class VonuntaryContentActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mcon = this;
         data = (Voluntary)getIntent().getSerializableExtra("data");
         // TODO : 봉사활동 했는지 안했는지 가져와야됨
         setLayout();
@@ -63,11 +67,17 @@ public class VonuntaryContentActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if(!isDone) {
                     //봉사활동 신청이 안되어 있을 경우
+                    RequestDBHelper rdbh = new RequestDBHelper(mcon);
+                    rdbh.insert(Common.userCode, data.voluntaryCode);
+
                     Snackbar.make(view, data.voluntaryTitle + " 신청이 완료되었습니다.", Snackbar.LENGTH_LONG)
                             .setAction("Action", null).show();
                     fab.setImageResource(R.drawable.ic_remove_black_24dp);
                     isDone=true;
                 }else{
+                    RequestDBHelper rdbh = new RequestDBHelper(mcon);
+                    rdbh.delete(Common.userCode, data.voluntaryCode);
+
                     Snackbar.make(view, data.voluntaryTitle + " 취소가 완료되었습니다.", Snackbar.LENGTH_LONG)
                             .setAction("Action", null).show();
                     fab.setImageResource(R.drawable.ic_add_black_24dp);
