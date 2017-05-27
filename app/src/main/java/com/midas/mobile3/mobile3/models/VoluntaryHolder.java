@@ -15,7 +15,8 @@ import com.midas.mobile3.mobile3.VoluntaryFragment;
 import com.midas.mobile3.mobile3.VonuntaryContentActivity;
 import com.midas.mobile3.mobile3.db_model.Voluntary;
 
-import java.io.Serializable;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * Created by koohanmo on 2017-05-27.
@@ -46,6 +47,9 @@ public class VoluntaryHolder extends RecyclerView.ViewHolder{
     }
 
     public void setData(Voluntary data){
+        String reqStart = new SimpleDateFormat("yyyy-MM-dd HH:mm").format(data.voluntaryReqStartDate);
+        String reqEnd = new SimpleDateFormat("yyyy-MM-dd HH:mm").format(data.voluntaryReqStartDate);
+
         this.data = data;
         txtTitle.setText(data.voluntaryTitle);
         txtDate.setText(data.voluntaryReqStartDate+ " ~ " + data.voluntaryReqEndDate);
