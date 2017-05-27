@@ -70,20 +70,22 @@ public class PointThingAdapter extends RecyclerView.Adapter<PointThingHolder>{
 
         // activeThingList.voluntary
 
-        Collections.sort(pointThingList, new Comparator<PointThing>() {
-            @Override
-            public int compare(PointThing o1, PointThing o2) {
-                if( o1.date.getTime() > o2.date.getTime() ){
-                    return 1;
+        if( pointThingList != null ){
+            Collections.sort(pointThingList, new Comparator<PointThing>() {
+                @Override
+                public int compare(PointThing o1, PointThing o2) {
+                    if( o1.date.getTime() > o2.date.getTime() ){
+                        return 1;
+                    }
+                    else if( o1.date.getTime() < o2.date.getTime() ){
+                        return -1;
+                    }
+                    else{
+                        return 0;
+                    }
                 }
-                else if( o1.date.getTime() < o2.date.getTime() ){
-                    return -1;
-                }
-                else{
-                    return 0;
-                }
-            }
-        });
+            });
+        }
     }
 
 
