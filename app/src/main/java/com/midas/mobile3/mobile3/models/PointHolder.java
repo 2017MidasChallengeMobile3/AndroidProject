@@ -19,25 +19,26 @@ import java.text.SimpleDateFormat;
  */
 public class PointHolder extends RecyclerView.ViewHolder{
 
+    //TODO 데이터 모델 바꿔야함
     Voluntary data;
-    TextView txtTitle, txtDate, txtPoint;
-    ImageView img;
+    TextView txtTitle, txtDate, txtPoint, txtLeftPoint;
     Context mcon;
 
     public PointHolder(View itemView, final Context mcon) {
         super(itemView);
         this.mcon = mcon;
-        txtTitle = (TextView)itemView.findViewById(R.id.voluntary_recycler_item_title);
-        txtDate = (TextView)itemView.findViewById(R.id.voluntary_recycler_item_date);
-        txtPoint = (TextView)itemView.findViewById(R.id.voluntary_recycler_item_point);
-        img = (ImageView)itemView.findViewById(R.id.voluntary_recycler_item_img);
+        txtTitle = (TextView)itemView.findViewById(R.id.point_title);
+        txtDate = (TextView)itemView.findViewById(R.id.point_date);
+        txtPoint = (TextView)itemView.findViewById(R.id.point_point);
+        txtLeftPoint = (TextView)itemView.findViewById(R.id.point_left_point);
 
         itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(mcon, VonuntaryContentActivity.class);
-                i.putExtra("data",data);
-                mcon.startActivity(i);
+                // TODO : 결정해야됨 띄울지 말지
+//                Intent i = new Intent(mcon, VonuntaryContentActivity.class);
+//                i.putExtra("data",data);
+//                mcon.startActivity(i);
             }
         });
     }
@@ -46,10 +47,11 @@ public class PointHolder extends RecyclerView.ViewHolder{
         String reqStart = new SimpleDateFormat("yyyy-MM-dd HH:mm").format(data.voluntaryReqStartDate);
         String reqEnd = new SimpleDateFormat("yyyy-MM-dd HH:mm").format(data.voluntaryReqStartDate);
 
+        // TODO : 데이터에 맞게 조정해줘야됨
         this.data = data;
         txtTitle.setText(data.voluntaryTitle);
         txtDate.setText(data.voluntaryReqStartDate+ " ~ " + data.voluntaryReqEndDate);
-        txtPoint.setText(data.voluntaryPoint+"P");
-        Glide.with(mcon).load(data.voluntaryImg).into(img);
+        txtPoint.setText(data.voluntaryPoint);
+        txtLeftPoint.setText(data.voluntaryPoint);
     }
 }
