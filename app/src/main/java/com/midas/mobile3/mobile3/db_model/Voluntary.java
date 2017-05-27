@@ -1,12 +1,13 @@
 package com.midas.mobile3.mobile3.db_model;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 
 /**
  * Created by tjssm on 2017-05-27.
  */
 
-public class Voluntary {
+public class Voluntary implements Serializable{
     public int voluntaryCode;
     public String voluntaryTitle;
     public Timestamp voluntaryReqStartDate;

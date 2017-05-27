@@ -1,6 +1,7 @@
 package com.midas.mobile3.mobile3.models;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
@@ -8,7 +9,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.midas.mobile3.mobile3.MainActivity;
 import com.midas.mobile3.mobile3.R;
+import com.midas.mobile3.mobile3.VoluntaryFragment;
+import com.midas.mobile3.mobile3.VonuntaryContentActivity;
 import com.midas.mobile3.mobile3.db_model.Voluntary;
 
 import java.text.SimpleDateFormat;
@@ -22,7 +26,6 @@ public class VoluntaryHolder extends RecyclerView.ViewHolder{
     Voluntary data;
     TextView txtTitle, txtDate, txtPoint;
     ImageView img;
-
     Context mcon;
 
     public VoluntaryHolder(View itemView, final Context mcon) {
@@ -36,7 +39,9 @@ public class VoluntaryHolder extends RecyclerView.ViewHolder{
         itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(mcon,"Item clicked!!",Toast.LENGTH_SHORT).show();
+                Intent i = new Intent(mcon, VonuntaryContentActivity.class);
+                i.putExtra("data",data);
+                mcon.startActivity(i);
             }
         });
     }
@@ -45,6 +50,7 @@ public class VoluntaryHolder extends RecyclerView.ViewHolder{
         String reqStart = new SimpleDateFormat("yyyy-MM-dd HH:mm").format(data.voluntaryReqStartDate);
         String reqEnd = new SimpleDateFormat("yyyy-MM-dd HH:mm").format(data.voluntaryReqStartDate);
 
+        this.data = data;
         txtTitle.setText(data.voluntaryTitle);
         txtDate.setText(data.voluntaryReqStartDate+ " ~ " + data.voluntaryReqEndDate);
         txtPoint.setText(data.voluntaryPoint+"P");

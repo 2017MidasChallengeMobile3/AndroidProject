@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
     private TabLayout tabLayout;
     private ViewPager viewPager;
 
-    private final String menuNames[] = {"봉사활동", "활동내역","기부하기", "포인트"};
+    private final String menuNames[] = {"봉사활동", "활동내역", "기부하기", "포인트"};
 
 
     @Override
@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
-
+                viewPager.setCurrentItem(tab.getPosition());
             }
 
             @Override
@@ -83,11 +83,12 @@ public class MainActivity extends AppCompatActivity {
         private int tabCount;
         VoluntaryFragment fragment1;
         VoluntaryCheckFragment fragment2;
-        PointFragment fragment3;
+        BusinessFragment fragment3;
+        PointFragment fragment4;
 
         public TabPageAdapter(FragmentManager fm, int tabCount){
             super(fm);
-            this.tabCount=3;
+            this.tabCount=tabCount;
         }
 
         @Override
@@ -105,9 +106,14 @@ public class MainActivity extends AppCompatActivity {
                     return fragment2;
                 case 2:
                     if(fragment3==null){
-                        fragment3 = new PointFragment();
+                        fragment3 = new BusinessFragment();
                     }
                     return fragment3;
+                case 3:
+                    if(fragment4==null){
+                        fragment4 = new PointFragment();
+                    }
+                    return fragment4;
 
             }
             return null;
