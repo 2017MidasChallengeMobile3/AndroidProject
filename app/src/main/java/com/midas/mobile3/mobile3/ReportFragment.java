@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.midas.mobile3.mobile3.controller.BusinessAdapter;
+import com.midas.mobile3.mobile3.controller.ReportThingAdapter;
 
 /**
  * Created by myRoom on 2017-05-28.
@@ -17,7 +18,7 @@ import com.midas.mobile3.mobile3.controller.BusinessAdapter;
 public class ReportFragment extends Fragment {
 
     RecyclerView mRecyclerView;
-    BusinessAdapter mAdapter;
+    ReportThingAdapter mAdapter;
 
     public ReportFragment() {
         // Required empty public constructor
@@ -38,7 +39,7 @@ public class ReportFragment extends Fragment {
 
     private void setLayout(View v){
         mRecyclerView = (RecyclerView)v.findViewById(R.id.list);
-        mAdapter = new BusinessAdapter(getActivity());
+        mAdapter = new ReportThingAdapter(getActivity());
         mRecyclerView.setAdapter(mAdapter);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
     }

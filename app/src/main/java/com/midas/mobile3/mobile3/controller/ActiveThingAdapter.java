@@ -69,8 +69,6 @@ public class ActiveThingAdapter extends RecyclerView.Adapter<ActiveThingHolder>{
             VoluntaryDBHelper vdbh = new VoluntaryDBHelper(mcon);
             ActiveThing activeThing = null;
 
-            System.out.println("리코리코리" + requestList.get(0).requestCode);
-
             for(int i=0; i<requestList.size(); i++){
                 activeThing = new ActiveThing();
 

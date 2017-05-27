@@ -106,6 +106,32 @@ public class BusinessDBHelper extends SQLiteOpenHelper {
         return result;
     }
 
+    public Business selectBusiness(int businessCode) {
+        // 읽기가 가능하게 DB 열기
+        Business result = null;
+        SQLiteDatabase db = getReadableDatabase();
+
+        // DB에 있는 데이터를 쉽게 처리하기 위해 Cursor를 사용하여 테이블에 있는 모든 데이터 출력
+        Cursor cursor = db.rawQuery("SELECT * " +
+                "FROM BUSINESS " +
+                "WHERE business_code = " + businessCode, null);
+
+        if( cursor.getCount() > 0 ){
+            result = new Business();
+
+            while (cursor.moveToNext()) {
+                result.businessCode = cursor.getInt(0);
+                result.businessName = cursor.getString(1);
+                result.businessContent= cursor.getString(2);
+                result.businessGoalPoint = cursor.getInt(3);
+                result.businessCurPoint= cursor.getInt(4);
+                result.businessImgUrl = cursor.getString(5);
+            }
+        }
+
+        return result;
+    }
+
     //update : 추가필요, 관리자가 봉사활동 내용 바꿨을때
     public void updateBusinessCurPoint(int code, int point) {
         SQLiteDatabase db = getWritableDatabase();
