@@ -14,8 +14,10 @@ import android.widget.Toast;
 import com.midas.mobile3.mobile3.db.CompleteDBHelper;
 import com.midas.mobile3.mobile3.db.DonationDBHelper;
 import com.midas.mobile3.mobile3.db.ReportDBHelper;
+import com.midas.mobile3.mobile3.db.RequestDBHelper;
 import com.midas.mobile3.mobile3.db.UserDBHelper;
 import com.midas.mobile3.mobile3.db.VoluntaryDBHelper;
+import com.midas.mobile3.mobile3.db_model.Request;
 import com.midas.mobile3.mobile3.db_model.User;
 
 import java.util.ArrayList;
@@ -42,6 +44,11 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void insertDummyData(){
+        UserDBHelper udbh = new UserDBHelper(this);
+
+        udbh.insert(1, "id", "pw", "TESTER", 9009);
+
+
         // 임의 더미데이터 생성 - 나중에 지울것
         VoluntaryDBHelper vdbh = new VoluntaryDBHelper(this);
         String str1="2017-05-20 11:22:33.444";
@@ -664,6 +671,14 @@ public class LoginActivity extends AppCompatActivity {
 
         vdbh.insert("좋은부모되기 교육 및 홍보 활동", timestamp1, timestamp2, timestamp3, timestamp4, 220, volContent, 0, "http://news20.busan.com/content/image/2017/04/02/20170402000089_0.jpg");
 
+
+        RequestDBHelper rdbh = new RequestDBHelper(this);
+        rdbh.insert(1, 9, timestamp1);
+        rdbh.insert(1, 4, timestamp2);
+        rdbh.insert(1, 5, timestamp3);
+        rdbh.insert(1, 8, timestamp4);
+
+
         CompleteDBHelper cdbh = new CompleteDBHelper(this);
         String str="2017-05-01 00:00:00.000";
         Timestamp timestamp = null;
@@ -698,8 +713,8 @@ public class LoginActivity extends AppCompatActivity {
         imgUrlList.add("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJAqvBcgMc3hOpqI4FoxzK68Sh34gkdemoHrsrf7hMQoFaHD_Nhg");
 
 
-        ReportDBHelper rdbh = new ReportDBHelper(this);
-        rdbh.insertReport(3, "우앙 신나는 연탄나르기", imgUrlList);
+        ReportDBHelper rpdbh = new ReportDBHelper(this);
+        rpdbh.insertReport(3, "우앙 신나는 연탄나르기", imgUrlList);
     }
 
     private void setLayout(){
