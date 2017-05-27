@@ -15,14 +15,10 @@ import com.midas.mobile3.mobile3.controller.PointThingAdapter;
 
 public class AdminAddActivity extends AppCompatActivity {
 
-    RecyclerView mRecyclerView;
-    PointThingAdapter mAdapter;
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_admin_voluntary);
+        setContentView(R.layout.activity_admin_add);
         setLayout();
     }
 
@@ -30,12 +26,7 @@ public class AdminAddActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle("봉사활동 추가");
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        mRecyclerView = (RecyclerView)findViewById(R.id.list);
-        //mAdapter = new AdminVoluntaryActivity(this);
-        mRecyclerView.setAdapter(mAdapter);
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
