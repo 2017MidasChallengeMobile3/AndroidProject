@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.midas.mobile3.mobile3.R;
+import com.midas.mobile3.mobile3.db.BusinessDBHelper;
 
 public class AdminBusinessActivity extends AppCompatActivity {
 
@@ -40,9 +41,34 @@ public class AdminBusinessActivity extends AppCompatActivity {
         btnComplete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // TODO : 긁어서 DB ㄱㄱㄱㄱㄱㄱㄱㄱ
+                if( editTitle.getText().toString().trim().equals("")){
+                    Common.makeToast(mCon, "사업 이름을 입력하세요.");
+                }
+                else if( editContents.getText().toString().trim().equals("")){
+                    Common.makeToast(mCon, "상세 내용을 입력하세요.");
+                }
+                else if( editPrice.getText().toString().trim().equals("")){
+                    Common.makeToast(mCon, "목표 금액을 입력하세요.");
+                }
+                else{
+                    String imgUrl = editURL.getText().toString().trim();
 
-                Toast.makeText(mCon,"성공적으로 등록되었습니다.",Toast.LENGTH_SHORT).show();
+                    if( imgUrl == null || imgUrl.equals("")){
+                        imgUrl = "http://cfile6.uf.tistory.com/image/2120913D58B0C2F1297897";
+                    }
+
+                    String name = editTitle.getText().toString().trim();
+                    String content = editContents.getText().toString().trim();
+                    String priceStr = editPrice.getText().toString().trim();
+
+                    int price = Integer.parseInt(priceStr);
+
+                    BusinessDBHelper bdbh = new BusinessDBHelper(mCon);
+                    bdbh.insert(name, content, price, 0, imgUrl);
+
+                    Toast.makeText(mCon,"성공적으로 등록되었습니다.",Toast.LENGTH_SHORT).show();
+                    finish();
+                }
             }
         });
 

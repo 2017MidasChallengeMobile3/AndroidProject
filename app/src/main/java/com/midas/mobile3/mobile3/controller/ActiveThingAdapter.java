@@ -59,7 +59,7 @@ public class ActiveThingAdapter extends RecyclerView.Adapter<ActiveThingHolder>{
         activeThingList = new ArrayList<ActiveThing>();
 
         RequestDBHelper rdbh  = new RequestDBHelper(mcon);
-        ArrayList<Request> requestList  = rdbh.selectRequest(Common.userCode); //TODO : 유저코드 박을것
+        ArrayList<Request> requestList  = rdbh.selectRequest(Common.userCode);
 
         if( requestList != null ){
             VoluntaryDBHelper vdbh = new VoluntaryDBHelper(mcon);
@@ -78,7 +78,7 @@ public class ActiveThingAdapter extends RecyclerView.Adapter<ActiveThingHolder>{
         }
 
         CompleteDBHelper cdbh = new CompleteDBHelper(mcon);
-        ArrayList<Complete> completeList = cdbh.selectComplete(Common.userCode); //TODO : 유저코드 박을것
+        ArrayList<Complete> completeList = cdbh.selectComplete(Common.userCode);
 
         if( completeList != null ){
             VoluntaryDBHelper vdbh = new VoluntaryDBHelper(mcon);

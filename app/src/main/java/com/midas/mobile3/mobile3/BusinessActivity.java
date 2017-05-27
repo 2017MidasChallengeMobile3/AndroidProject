@@ -89,12 +89,10 @@ public class BusinessActivity extends AppCompatActivity {
     }
 
     private void requestBusiness(){
-        //TODO : user로 바꾸기
-        //UserDBHelper udbh = new UserDBHelper(mcon);
-        //User user = udbh.selectUserInfo(Common.userCode);
+        UserDBHelper udbh = new UserDBHelper(mcon);
+        User user = udbh.selectUserInfo(Common.userCode);
 
-            //getIntDialog("기부금액", 0, 0, user.userCurPoint, new IntEventListener() {//
-        getIntDialog("기부금액", 0, 0, 10000, new IntEventListener() {
+            getIntDialog("기부금액", 0, 0, user.userCurPoint, new IntEventListener() {
                 @Override
                 public void intEvent(int val) {
 

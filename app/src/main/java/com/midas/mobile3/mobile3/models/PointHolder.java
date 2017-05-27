@@ -35,7 +35,7 @@ public class PointHolder extends RecyclerView.ViewHolder{
         String reqStart = new SimpleDateFormat("yyyy-MM-dd HH:mm").format(data.voluntaryReqStartDate);
         String reqEnd = new SimpleDateFormat("yyyy-MM-dd HH:mm").format(data.voluntaryReqStartDate);
 
-        // TODO : 데이터에 맞게 조정해줘야됨
+
         this.data = data;
         txtTitle.setText(data.voluntaryTitle);
         txtDate.setText(data.voluntaryReqStartDate+ " ~ " + data.voluntaryReqEndDate);

@@ -97,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    @Override 
+    @Override
     public void onBackPressed() {
         if(System.currentTimeMillis() > backPressedTime+2000){
             Snackbar.make(mainLayout, "1번 더 누르면 종료됩니다.", Snackbar.LENGTH_LONG)

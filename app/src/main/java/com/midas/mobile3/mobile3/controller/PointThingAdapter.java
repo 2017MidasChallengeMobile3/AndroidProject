@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.midas.mobile3.mobile3.Common;
 import com.midas.mobile3.mobile3.R;
 import com.midas.mobile3.mobile3.db.CompleteDBHelper;
 import com.midas.mobile3.mobile3.db.DonationDBHelper;
@@ -37,7 +38,7 @@ public class PointThingAdapter extends RecyclerView.Adapter<PointThingHolder>{
         pointThingList = new ArrayList<PointThing>();
 
         CompleteDBHelper cdbh = new CompleteDBHelper(mcon);
-        ArrayList<Complete> completeList = cdbh.selectComplete(1); //TODO : 유저코드 박을것
+        ArrayList<Complete> completeList = cdbh.selectComplete(Common.userCode);
 
         if( completeList != null ){
             VoluntaryDBHelper vdbh = new VoluntaryDBHelper(mcon);
@@ -56,7 +57,7 @@ public class PointThingAdapter extends RecyclerView.Adapter<PointThingHolder>{
         }
 
         DonationDBHelper ddbh = new DonationDBHelper(mcon);
-        ArrayList<Donation> donationList =  ddbh.selectDonation(1); //TODO : 유저코드 박을것
+        ArrayList<Donation> donationList =  ddbh.selectDonation(Common.userCode);
 
         if( donationList != null ){
             PointThing pointThing = null;

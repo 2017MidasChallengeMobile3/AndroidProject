@@ -45,11 +45,8 @@ public class VonuntaryContentActivity extends AppCompatActivity {
         mcon = this;
         data = (Voluntary)getIntent().getSerializableExtra("data");
 
-        // TODO : 봉사활동 했는지 안했는지 가져와야됨
         RequestDBHelper rdbh = new RequestDBHelper(mcon);
         ArrayList<Request> requestList = rdbh.selectRequest(Common.userCode, data.voluntaryCode);
-
-        System.out.println(requestList);
 
         if(requestList != null && requestList.size() > 0){
            status = 1;
@@ -61,8 +58,6 @@ public class VonuntaryContentActivity extends AppCompatActivity {
         if(completeList != null && completeList.size() > 0){
             status = 2;
         }
-
-        System.out.println("STATUS : " + status);
 
         setLayout();
     }

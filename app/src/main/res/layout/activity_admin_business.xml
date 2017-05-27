@@ -41,7 +41,7 @@
 
                 <EditText
                     android:id="@+id/admin_edit_titlename"
-                    android:hint="희망의 무료급식"
+                    android:hint="예) 희망의 무료급식"
                     android:textSize="20dp"
                     android:gravity="center"
                     android:layout_weight="7"
@@ -65,7 +65,7 @@
 
                 <EditText
                     android:id="@+id/admin_edit_price"
-                    android:hint="1000000"
+                    android:hint="예) 1000000"
                     android:textSize="20dp"
                     android:inputType="numberDecimal"
                     android:gravity="center"

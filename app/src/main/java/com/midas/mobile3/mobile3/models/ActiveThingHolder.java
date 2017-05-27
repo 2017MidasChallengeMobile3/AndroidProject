@@ -2,6 +2,7 @@ package com.midas.mobile3.mobile3.models;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
@@ -54,5 +55,9 @@ public class ActiveThingHolder extends RecyclerView.ViewHolder{
         txtDate.setText(Common.dateToString(data.voluntary.voluntaryReqStartDate) + " ~ " + Common.dateToString(data.voluntary.voluntaryReqEndDate));
         txtPoint.setText(data.voluntary.voluntaryPoint+"P");
         Glide.with(mcon).load(data.voluntary.voluntaryImg).into(img);
+
+        if( data.sort == 2 ){
+
+        }
     }
 }
