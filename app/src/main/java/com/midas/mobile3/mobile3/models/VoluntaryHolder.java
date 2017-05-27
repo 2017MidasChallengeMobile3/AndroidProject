@@ -46,7 +46,7 @@ public class VoluntaryHolder extends RecyclerView.ViewHolder{
         String reqEnd = new SimpleDateFormat("yyyy-MM-dd HH:mm").format(data.voluntaryReqStartDate);
 
         txtTitle.setText(data.voluntaryTitle);
-        txtDate.setText(reqStart+ " ~ " + reqEnd);
+        txtDate.setText(data.voluntaryReqStartDate+ " ~ " + data.voluntaryReqEndDate);
         txtPoint.setText(data.voluntaryPoint+"P");
         Glide.with(mcon).load(data.voluntaryImg).into(img);
     }

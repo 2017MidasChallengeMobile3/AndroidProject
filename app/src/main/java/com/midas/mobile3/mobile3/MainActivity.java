@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
     private TabLayout tabLayout;
     private ViewPager viewPager;
 
-    private final String menuNames[] = {"봉사활동", "활동내역", "포인트"};
+    private final String menuNames[] = {"봉사활동", "활동내역","기부하기", "포인트"};
 
 
     @Override
