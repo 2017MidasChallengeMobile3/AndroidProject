@@ -39,7 +39,6 @@ public class VoluntaryHolder extends RecyclerView.ViewHolder{
     }
 
     public void setData(Voluntary data){
-
         txtTitle.setText(data.voluntaryTitle);
         txtDate.setText(data.voluntaryReqStartDate+ " ~ " + data.voluntaryReqEndDate);
         txtPoint.setText(data.voluntaryPoint+"P");
