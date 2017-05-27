@@ -8,7 +8,6 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.widget.TableLayout;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
@@ -21,6 +20,8 @@ public class MainActivity extends AppCompatActivity {
     private TabLayout tabLayout;
     private ViewPager viewPager;
 
+    private final String menuNames[] = {"봉사활동", "활동내역", "포인트"};
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,10 +32,34 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setLayout(){
-        toolbar = (Toolbar)findViewById(R.id.appbar);
-        setSupportActionBar(toolbar);
+        tabLayout = (TabLayout)findViewById(R.id.main_tab);
+        for(String name : menuNames){
+            tabLayout.addTab(tabLayout.newTab().setText(name));
+        }
+        tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
-        //tabLayout = (TableLayout)findViewById(R.id.)
+        viewPager = (ViewPager) findViewById(R.id.main_viewpager);
+
+        TabPageAdapter pageAdapter = new TabPageAdapter(getSupportFragmentManager(),tabLayout.getTabCount());
+        viewPager.setAdapter(pageAdapter);
+        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
 
 
     }
@@ -56,6 +81,9 @@ public class MainActivity extends AppCompatActivity {
     private class TabPageAdapter extends FragmentStatePagerAdapter{
 
         private int tabCount;
+        VoluntaryFragment fragment1;
+        VoluntaryCheckFragment fragment2;
+        PointFragment fragment3;
 
         public TabPageAdapter(FragmentManager fm, int tabCount){
             super(fm);
@@ -65,9 +93,22 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public Fragment getItem(int position) {
             switch (position){
-                case 0: break;
-                case 1: break;
-                case 2: break;
+                case 0:
+                    if(fragment1==null){
+                        fragment1 = new VoluntaryFragment();
+                    }
+                    return fragment1;
+                case 1:
+                    if(fragment2==null){
+                        fragment2 = new VoluntaryCheckFragment();
+                    }
+                    return fragment2;
+                case 2:
+                    if(fragment3==null){
+                        fragment3 = new PointFragment();
+                    }
+                    return fragment3;
+
             }
             return null;
         }
