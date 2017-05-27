@@ -95,7 +95,7 @@
 
                 <EditText
                     android:id="@+id/admin_edit_req_start"
-                    android:hint="2017.05.08"
+                    android:hint="2017/05/08"
                     android:textSize="15dp"
                     android:inputType="date"
                     android:gravity="center"
@@ -119,7 +119,7 @@
 
                 <EditText
                     android:id="@+id/admin_edit_req_end"
-                    android:hint="2017.05.08"
+                    android:hint="2017/05/08"
                     android:textSize="15dp"
                     android:inputType="date"
                     android:gravity="center"
@@ -143,7 +143,7 @@
 
                 <EditText
                     android:id="@+id/admin_edit_exc_start"
-                    android:hint="2017.05.08"
+                    android:hint="2017/05/08"
                     android:textSize="15dp"
                     android:inputType="date"
                     android:gravity="center"
@@ -167,7 +167,7 @@
 
                 <EditText
                     android:id="@+id/admin_edit_exc_end"
-                    android:hint="2017.05.08"
+                    android:hint="2017/05/08"
                     android:textSize="15dp"
                     android:inputType="date"
                     android:gravity="center"
@@ -192,7 +192,7 @@
 
                 <EditText
                     android:id="@+id/admin_edit_url"
-                    android:hint="2017.05.08"
+                    android:hint="http://midasit.com"
                     android:textSize="15dp"
                     android:gravity="center"
                     android:layout_weight="7"
