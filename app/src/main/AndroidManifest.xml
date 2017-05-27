@@ -36,8 +36,8 @@
         <activity
             android:name=".VonuntaryContentActivity"
             android:label="@string/title_activity_vonuntary_content"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".BusinessActivity"></activity>
     </application>
 
 </manifest>

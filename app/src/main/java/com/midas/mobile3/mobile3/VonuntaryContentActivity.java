@@ -76,8 +76,8 @@ public class VonuntaryContentActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         imgTitle = (ImageView)findViewById(R.id.voluntary_contents_img_title);
-        if(data.voluntaryImg!=null && !data.voluntaryImg.equals("")) Picasso.with(this).load(data.voluntaryImg)
-                .transform(new BlurTransformation(this,5)).into(imgTitle);
+        if(data.voluntaryImg!=null && !data.voluntaryImg.equals(""))
+            Picasso.with(this).load(data.voluntaryImg).into(imgTitle);
 
         txtTitle = (TextView)findViewById(R.id.voluntary_contents_title);
         txtTitle.setText(data.voluntaryTitle);

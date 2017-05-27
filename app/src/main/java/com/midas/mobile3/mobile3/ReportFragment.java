@@ -9,14 +9,17 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.midas.mobile3.mobile3.controller.BusinessAdapter;
-import com.midas.mobile3.mobile3.controller.VoluntaryAdapter;
 
-public class BusinessFragment extends Fragment {
+/**
+ * Created by myRoom on 2017-05-28.
+ */
+
+public class ReportFragment extends Fragment {
 
     RecyclerView mRecyclerView;
     BusinessAdapter mAdapter;
 
-    public BusinessFragment() {
+    public ReportFragment() {
         // Required empty public constructor
     }
 
@@ -28,10 +31,8 @@ public class BusinessFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_business, container, false);
+        View v = inflater.inflate(R.layout.fragment_report, container, false);
         setLayout(v);
-
-
         return v;
     }
 

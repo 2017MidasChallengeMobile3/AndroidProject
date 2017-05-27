@@ -18,6 +18,7 @@ public class VoluntaryFragment extends Fragment {
     RecyclerView mRecyclerView;
     VoluntaryAdapter mAdapter;
 
+
     public VoluntaryFragment() {
         // Required empty public constructor
     }
