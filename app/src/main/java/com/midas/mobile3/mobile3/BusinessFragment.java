@@ -8,13 +8,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.midas.mobile3.mobile3.controller.BusinessAdapter;
 import com.midas.mobile3.mobile3.controller.VoluntaryAdapter;
 
 public class BusinessFragment extends Fragment {
 
     // TODO : 어댑터 바꿔야됨
     RecyclerView mRecyclerView;
-    VoluntaryAdapter mAdapter;
+    BusinessAdapter mAdapter;
 
     public BusinessFragment() {
         // Required empty public constructor
@@ -37,7 +38,7 @@ public class BusinessFragment extends Fragment {
 
     private void setLayout(View v){
         mRecyclerView = (RecyclerView)v.findViewById(R.id.list);
-        mAdapter = new VoluntaryAdapter(getActivity());
+        mAdapter = new BusinessAdapter(getActivity());
         mRecyclerView.setAdapter(mAdapter);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
     }

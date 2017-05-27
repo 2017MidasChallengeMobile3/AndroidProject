@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.midas.mobile3.mobile3.R;
+import com.midas.mobile3.mobile3.db.BusinessDBHelper;
 import com.midas.mobile3.mobile3.db_model.Business;
 import com.midas.mobile3.mobile3.models.BusinessHolder;
 
@@ -24,6 +25,8 @@ public class BusinessAdapter extends RecyclerView.Adapter<BusinessHolder>{
     public BusinessAdapter(Context mcon){
         this.mcon=mcon;
         // cur point 순
+        BusinessDBHelper bdbh  = new BusinessDBHelper(mcon);
+        this.businessList = bdbh.selectBusinessIng();
     }
 
 

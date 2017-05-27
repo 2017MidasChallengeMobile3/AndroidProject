@@ -11,6 +11,10 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.midas.mobile3.mobile3.db.RequestDBHelper;
+import com.midas.mobile3.mobile3.db.UserDBHelper;
+import com.midas.mobile3.mobile3.db.VoluntaryDBHelper;
 import com.midas.mobile3.mobile3.db_model.Voluntary;
 import com.squareup.picasso.Picasso;
 
@@ -71,6 +75,7 @@ public class VonuntaryContentActivity extends AppCompatActivity {
             }
         });
 
+        //여기서 봉사활동 신청.
         fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override

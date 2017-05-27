@@ -10,5 +10,6 @@ public class Donation {
     public int donationCode;
     public Timestamp donationDate;
     public int userCode;
-    public int vsCode;
+    public int businessCode;
+    public int donationPoint;
 }

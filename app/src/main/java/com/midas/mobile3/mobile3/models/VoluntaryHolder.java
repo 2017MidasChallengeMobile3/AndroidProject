@@ -7,6 +7,9 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.midas.mobile3.mobile3.Common;
+import com.midas.mobile3.mobile3.MainActivity;
 import com.midas.mobile3.mobile3.R;
 import com.midas.mobile3.mobile3.VonuntaryContentActivity;
 import com.midas.mobile3.mobile3.db_model.Voluntary;
@@ -27,7 +30,7 @@ public class VoluntaryHolder extends RecyclerView.ViewHolder{
     ImageView img;
     Context mcon;
 
-    public VoluntaryHolder(View itemView, final Context mcon) {
+    public VoluntaryHolder(final View itemView, final Context mcon) {
         super(itemView);
         this.mcon = mcon;
         txtTitle = (TextView)itemView.findViewById(R.id.voluntary_recycler_item_title);
@@ -35,6 +38,7 @@ public class VoluntaryHolder extends RecyclerView.ViewHolder{
         txtPoint = (TextView)itemView.findViewById(R.id.voluntary_recycler_item_point);
         img = (ImageView)itemView.findViewById(R.id.voluntary_recycler_item_img);
 
+        //여기서 봉사활동의 id가 정해진다.
         itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -46,12 +50,9 @@ public class VoluntaryHolder extends RecyclerView.ViewHolder{
     }
 
     public void setData(Voluntary data){
-        String reqStart = new SimpleDateFormat("yyyy-MM-dd HH:mm").format(data.voluntaryReqStartDate);
-        String reqEnd = new SimpleDateFormat("yyyy-MM-dd HH:mm").format(data.voluntaryReqStartDate);
-
         this.data = data;
         txtTitle.setText(data.voluntaryTitle);
-        txtDate.setText(data.voluntaryReqStartDate+ " ~ " + data.voluntaryReqEndDate);
+        txtDate.setText(Common.dateToString(data.voluntaryReqStartDate) + " ~ " + Common.dateToString(data.voluntaryReqEndDate));
         txtPoint.setText(data.voluntaryPoint+"P");
         Picasso.with(mcon).load(data.voluntaryImg)
                 .transform(new BlurTransformation(mcon,5)).into(img);
