@@ -53,7 +53,7 @@ public class ReportContentsActivity extends AppCompatActivity {
 
         mRecyclerView = (RecyclerView)findViewById(R.id.list);
         mAdapter = new ReportContentAdapter(this, data.reportImgUrlList);
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, true));
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
         mRecyclerView.setAdapter(mAdapter);
     }
 
