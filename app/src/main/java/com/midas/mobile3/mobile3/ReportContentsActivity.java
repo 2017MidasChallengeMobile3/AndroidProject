@@ -18,7 +18,6 @@ import java.util.ArrayList;
 
 public class ReportContentsActivity extends AppCompatActivity {
 
-    // TODO : 데이터 모델 바꿔야됨
     Context mcon;
     ArrayList<String> imgUrlList;
     ReportThing data;
@@ -43,12 +42,6 @@ public class ReportContentsActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        if( data.reportImgUrlList != null && data.reportImgUrlList.size() > 0){
-            imgUrlList = data.reportImgUrlList;
-
-            //TODO : 이미지 리사이클뷰로 하면 됨
-        }
-
         txtTitle = (TextView)findViewById(R.id.report_contents_title);
         txtTitle.setText(data.business.businessName);
 
@@ -62,8 +55,6 @@ public class ReportContentsActivity extends AppCompatActivity {
         mAdapter = new ReportContentAdapter(this, data.reportImgUrlList);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, true));
         mRecyclerView.setAdapter(mAdapter);
-
-
     }
 
 

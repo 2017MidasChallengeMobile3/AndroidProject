@@ -34,11 +34,11 @@ public class ReportDBHelper extends SQLiteOpenHelper {
                 "business_code INTEGER NOT NULL," +
                 "report_content VARCHAR(500) NOT NULL," +
                 "report_img_cnt INTEGER NOT NULL," +
-                "report_img_url_1 VARCHAR(300) NOT NULL," +
-                "report_img_url_2 VARCHAR(300) NOT NULL," +
-                "report_img_url_3 VARCHAR(300) NOT NULL," +
-                "report_img_url_4 VARCHAR(300) NOT NULL," +
-                "report_img_url_5 VARCHAR(300) NOT NULL," +
+                "report_img_url_1 VARCHAR(300)," +
+                "report_img_url_2 VARCHAR(300)," +
+                "report_img_url_3 VARCHAR(300)," +
+                "report_img_url_4 VARCHAR(300)," +
+                "report_img_url_5 VARCHAR(300)," +
                 "FOREIGN KEY (business_code) REFERENCES BUSINESS (business_code) ON DELETE CASCADE" +
                 "); ";
 
@@ -62,28 +62,28 @@ public class ReportDBHelper extends SQLiteOpenHelper {
         // DB에 입력한 값으로 행 추가
         switch (imgUrlList.size()){
             case 0:
-                db.execSQL("INSERT INTO USER(business_code, report_content, report_img_cnt) " +
+                db.execSQL("INSERT INTO REPORT(business_code, report_content, report_img_cnt) " +
                         "VALUES (" + businessCode + ", '" + content + "', 0);");
                 break;
             case 1:
-                db.execSQL("INSERT INTO USER(business_code, report_content, report_img_cnt, report_img_url_1) " +
+                db.execSQL("INSERT INTO REPORT(business_code, report_content, report_img_cnt, report_img_url_1) " +
                         "VALUES (" + businessCode + ", '" + content + "', 1, '" + imgUrlList.get(0)+ "');");
                 break;
             case 2:
-                db.execSQL("INSERT INTO USER(business_code, report_content, report_img_cnt, report_img_url_1, report_img_url_2) " +
-                        "VALUES (" + businessCode + ", '" + content + "', 1, '" + imgUrlList.get(0) + "', '" + imgUrlList.get(1) + "');");
+                db.execSQL("INSERT INTO REPORT(business_code, report_content, report_img_cnt, report_img_url_1, report_img_url_2) " +
+                        "VALUES (" + businessCode + ", '" + content + "', 2, '" + imgUrlList.get(0) + "', '" + imgUrlList.get(1) + "');");
                 break;
             case 3:
-                db.execSQL("INSERT INTO USER(business_code, report_content, report_img_cnt, report_img_url_1, report_img_url_2, report_img_url_3) " +
-                        "VALUES (" + businessCode + ", '" + content + "', 1, '" + imgUrlList.get(0) + "', '" + imgUrlList.get(1) + "', '" + imgUrlList.get(2) + "');");
+                db.execSQL("INSERT INTO REPORT(business_code, report_content, report_img_cnt, report_img_url_1, report_img_url_2, report_img_url_3) " +
+                        "VALUES (" + businessCode + ", '" + content + "', 3, '" + imgUrlList.get(0) + "', '" + imgUrlList.get(1) + "', '" + imgUrlList.get(2) + "');");
                 break;
             case 4:
-                db.execSQL("INSERT INTO USER(business_code, report_content, report_img_cnt, report_img_url_1, report_img_url_2, report_img_url_3, report_img_url_4) " +
-                        "VALUES (" + businessCode + ", '" + content + "', 1, '" + imgUrlList.get(0) + "', '" + imgUrlList.get(1) + "', '" + imgUrlList.get(2) + "', '" + imgUrlList.get(3) + "');");
+                db.execSQL("INSERT INTO REPORT(business_code, report_content, report_img_cnt, report_img_url_1, report_img_url_2, report_img_url_3, report_img_url_4) " +
+                        "VALUES (" + businessCode + ", '" + content + "', 4, '" + imgUrlList.get(0) + "', '" + imgUrlList.get(1) + "', '" + imgUrlList.get(2) + "', '" + imgUrlList.get(3) + "');");
                 break;
             case 5:
-                db.execSQL("INSERT INTO USER(business_code, report_content, report_img_cnt, report_img_url_1, report_img_url_2, report_img_url_3, report_img_url_4, report_img_url_5) " +
-                        "VALUES (" + businessCode + ", '" + content + "', 1, '" + imgUrlList.get(0) + "', '" + imgUrlList.get(1) + "', '" + imgUrlList.get(2) + "', '" + imgUrlList.get(3) + "', '" + imgUrlList.get(4) + "');");
+                db.execSQL("INSERT INTO REPORT(business_code, report_content, report_img_cnt, report_img_url_1, report_img_url_2, report_img_url_3, report_img_url_4, report_img_url_5) " +
+                        "VALUES (" + businessCode + ", '" + content + "', 5, '" + imgUrlList.get(0) + "', '" + imgUrlList.get(1) + "', '" + imgUrlList.get(2) + "', '" + imgUrlList.get(3) + "', '" + imgUrlList.get(4) + "');");
                 break;
         }
 

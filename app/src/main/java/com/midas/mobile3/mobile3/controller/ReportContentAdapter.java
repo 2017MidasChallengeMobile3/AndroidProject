@@ -29,7 +29,7 @@ public class ReportContentAdapter extends RecyclerView.Adapter<ReportContentHold
     ArrayList<String> imgList;
     Context mcon;
 
-    public ReportContentAdapter(Context mconm, ArrayList imgLIst){
+    public ReportContentAdapter(Context mcon, ArrayList imgLIst){
         this.mcon = mcon;
         this.imgList = imgLIst;
     }
