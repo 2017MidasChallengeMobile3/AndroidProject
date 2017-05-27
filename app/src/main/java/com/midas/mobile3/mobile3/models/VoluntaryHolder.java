@@ -6,17 +6,16 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
-import com.midas.mobile3.mobile3.MainActivity;
 import com.midas.mobile3.mobile3.R;
-import com.midas.mobile3.mobile3.VoluntaryFragment;
 import com.midas.mobile3.mobile3.VonuntaryContentActivity;
 import com.midas.mobile3.mobile3.db_model.Voluntary;
+import com.squareup.picasso.Picasso;
 
 import java.text.SimpleDateFormat;
-import java.util.Date;
+
+import jp.wasabeef.picasso.transformations.BlurTransformation;
+
 
 /**
  * Created by koohanmo on 2017-05-27.
@@ -54,6 +53,7 @@ public class VoluntaryHolder extends RecyclerView.ViewHolder{
         txtTitle.setText(data.voluntaryTitle);
         txtDate.setText(data.voluntaryReqStartDate+ " ~ " + data.voluntaryReqEndDate);
         txtPoint.setText(data.voluntaryPoint+"P");
-        Glide.with(mcon).load(data.voluntaryImg).into(img);
+        Picasso.with(mcon).load(data.voluntaryImg)
+                .transform(new BlurTransformation(mcon,5)).into(img);
     }
 }

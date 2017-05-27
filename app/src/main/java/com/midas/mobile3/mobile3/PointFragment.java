@@ -29,9 +29,7 @@ public class PointFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         View v =inflater.inflate(R.layout.fragment_point, container, false);
-
         setLayout(v);
-
         return v;
     }
     private void setLayout(View v){
