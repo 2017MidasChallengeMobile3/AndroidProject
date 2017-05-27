@@ -1,5 +1,7 @@
 package com.midas.mobile3.mobile3;
 
+import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -15,12 +17,11 @@ import com.midas.mobile3.mobile3.db.BusinessDBHelper;
 public class MainActivity extends AppCompatActivity {
 
     private long backPressedTime =0;
-    private Toast exitToast;
-
-    private Toolbar toolbar;
 
     private TabLayout tabLayout;
     private ViewPager viewPager;
+
+    private CoordinatorLayout mainLayout;
 
     private final String menuNames[] = {"봉사활동", "활동내역", "기부하기", "포인트"};
 
@@ -34,6 +35,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setLayout(){
+        mainLayout = (CoordinatorLayout)findViewById(R.id.main_content) ;
+
         tabLayout = (TabLayout)findViewById(R.id.main_tab);
         for(String name : menuNames){
             tabLayout.addTab(tabLayout.newTab().setText(name));
@@ -70,11 +73,10 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         if(System.currentTimeMillis() > backPressedTime+2000){
-            exitToast= Toast.makeText(this,"1번 더 누르면 종료됩니다.",Toast.LENGTH_SHORT);
-            exitToast.show();
+            Snackbar.make(mainLayout, "1번 더 누르면 종료됩니다.", Snackbar.LENGTH_LONG)
+                    .setAction("Action", null).show();
             backPressedTime = System.currentTimeMillis();
         }else{
-            if(exitToast!=null) exitToast.cancel();
             finish();
         }
     }

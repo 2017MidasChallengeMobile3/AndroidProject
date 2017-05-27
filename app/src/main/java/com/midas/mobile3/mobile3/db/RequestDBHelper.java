@@ -36,7 +36,7 @@ public class RequestDBHelper extends SQLiteOpenHelper {
                 "user_code INTEGER NOT NULL," +
                 "vs_code INTEGER NOT NULL," +
                 "FOREIGN KEY (user_code) REFERENCES USER (user_code) ON DELETE CASCADE," +
-                "FOREIGN KEY (vs_code) REFERENCES VOLUNTARY_SERVICE (vs_code) ON DELETE CASCADE," +
+                "FOREIGN KEY (vs_code) REFERENCES VOLUNTARY_SERVICE (vs_code) ON DELETE CASCADE" +
                 "); ";
 
         sqLiteDatabase.execSQL(SQL_CREATE_REQUEST_TABLE);
@@ -58,7 +58,7 @@ public class RequestDBHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = getWritableDatabase();
         // DB에 입력한 값으로 행 추가
         db.execSQL("INSERT INTO REQUEST(request_sort, request_date, user_code, vs_code) " +
-                "VALUES (1, CURRENT_TIMESTAMP, " + userCode + ", " + vsCode + ");");
+                "VALUES (0, CURRENT_TIMESTAMP, " + userCode + ", " + vsCode + ");");
         db.close();
     }
 
