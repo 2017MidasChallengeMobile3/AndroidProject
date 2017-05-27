@@ -7,13 +7,11 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 
 import com.midas.mobile3.mobile3.controller.AdminVoluntaryAdapter;
-import com.midas.mobile3.mobile3.controller.PointThingAdapter;
 
 public class AdminVoluntaryActivity extends AppCompatActivity {
 
     RecyclerView mRecyclerView;
     AdminVoluntaryAdapter mAdapter;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

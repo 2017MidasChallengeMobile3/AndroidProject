@@ -7,7 +7,7 @@ import android.content.SharedPreferences;
  * Created by myRoom on 2017-05-28.
  */
 
-public class shared {
+public class Shared {
 
     private static SharedPreferences preferences;
 
