@@ -1,6 +1,7 @@
 package com.midas.mobile3.mobile3;
 
 import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -10,6 +11,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
 import android.widget.Toast;
 
 import com.midas.mobile3.mobile3.db.BusinessDBHelper;
@@ -27,10 +29,12 @@ public class MainActivity extends AppCompatActivity {
     private TabLayout tabLayout;
     private ViewPager viewPager;
 
+    private FloatingActionButton fab;
+
+
     private CoordinatorLayout mainLayout;
 
     private final String menuNames[] = {"봉사활동", "활동내역", "기부하기","사업결과", "포인트"};
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,6 +77,16 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+        // TODO : 관리자이면 보이고 아니면 VISIBLE.GONE
+
+        fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //tabLayout.getPointerIcon()
+
+            }
+        });
     }
 
 

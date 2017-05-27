@@ -41,7 +41,9 @@
         <activity
             android:name=".ReportContentsActivity"
             android:label="@string/title_activity_report_contents"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".AdminVoluntaryActivity" />
+        <activity android:name=".AdminAddActivity"></activity>
     </application>
 
 </manifest>
