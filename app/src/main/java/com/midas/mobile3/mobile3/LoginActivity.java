@@ -696,7 +696,6 @@ public class LoginActivity extends AppCompatActivity {
         ArrayList<String> imgUrlList = new ArrayList<String>();
         imgUrlList.add("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS0pdQnAZ86GqM81IGaj9ODPYR7bgVG4_kgocVhXiIVrD5JtoTKGA");
         imgUrlList.add("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJAqvBcgMc3hOpqI4FoxzK68Sh34gkdemoHrsrf7hMQoFaHD_Nhg");
-        imgUrlList.add("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS0pdQnAZ86GqM81IGaj9ODPYR7bgVG4_kgocVhXiIVrD5JtoTKGA");
 
 
         ReportDBHelper rdbh = new ReportDBHelper(this);
@@ -714,14 +713,14 @@ public class LoginActivity extends AppCompatActivity {
 
                 // TODO : 실제 로그인 해야됨
                 //if(isChecked(editID.getText().toString()).booleanValue()==true) {//로그인 성공.
-                    Intent i = new Intent(LoginActivity.this, MainActivity.class);
+                Intent i = new Intent(LoginActivity.this, MainActivity.class);
 
-                    i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    startActivity(i);
+                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(i);
                 //}
                 //else{//로그인 실패.
-                    //Toast.makeText(LoginActivity.this,"아이디 혹은 비밀번호가 틀립니다.",Toast.LENGTH_SHORT).show();
+                //Toast.makeText(LoginActivity.this,"아이디 혹은 비밀번호가 틀립니다.",Toast.LENGTH_SHORT).show();
                 //}
             }
         });

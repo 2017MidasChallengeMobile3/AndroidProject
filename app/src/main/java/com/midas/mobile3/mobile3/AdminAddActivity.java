@@ -26,7 +26,7 @@ public class AdminAddActivity extends AppCompatActivity {
 
     private void setLayout(){
         mRecyclerView = (RecyclerView)findViewById(R.id.list);
-        mAdapter = new AdminVoluntaryActivity(this);
+        //mAdapter = new AdminVoluntaryActivity(this);
         mRecyclerView.setAdapter(mAdapter);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
