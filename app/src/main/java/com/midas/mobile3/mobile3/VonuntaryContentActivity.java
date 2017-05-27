@@ -83,10 +83,10 @@ public class VonuntaryContentActivity extends AppCompatActivity {
         txtTitle.setText(data.voluntaryTitle);
 
         txtExtDate = (TextView)findViewById(R.id.voluntary_contents_excdate);
-        txtExtDate.setText(data.voluntaryExcStartDate + " ~ "+ data.voluntaryExcEndDate);
+        txtExtDate.setText(Common.dateToString(data.voluntaryExcStartDate) + " ~ "+ Common.dateToString(data.voluntaryExcEndDate));
 
         txtReqDate = (TextView)findViewById(R.id.voluntary_contents_reqdate);
-        txtReqDate.setText(data.voluntaryReqStartDate + "~" + data.voluntaryReqEndDate);
+        txtReqDate.setText(Common.dateToString(data.voluntaryReqStartDate) + "~" + Common.dateToString(data.voluntaryReqEndDate));
 
         txtPoint = (TextView)findViewById(R.id.voluntary_contents_point);
         txtPoint.setText(data.voluntaryPoint+"P");

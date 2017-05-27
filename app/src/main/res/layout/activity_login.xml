@@ -55,6 +55,7 @@
                     <EditText
                         android:id="@+id/login_edit_password"
                         android:hint="password"
+                        android:inputType="textPassword"
                         android:background="@drawable/btn_round_white"
                         android:paddingLeft="10dp"
                         android:paddingRight="10dp"

@@ -67,6 +67,7 @@
                 <EditText
                     android:hint="비밀번호"
                     android:id="@+id/signup_edit_password"
+                    android:inputType="textPassword"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:layout_marginBottom="10dp"

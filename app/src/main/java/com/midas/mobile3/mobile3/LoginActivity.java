@@ -1,5 +1,6 @@
 package com.midas.mobile3.mobile3;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -11,6 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.midas.mobile3.mobile3.db.BusinessDBHelper;
 import com.midas.mobile3.mobile3.db.CompleteDBHelper;
 import com.midas.mobile3.mobile3.db.DonationDBHelper;
 import com.midas.mobile3.mobile3.db.ReportDBHelper;
@@ -27,7 +29,7 @@ import java.text.SimpleDateFormat;
 
 public class LoginActivity extends AppCompatActivity {
 
-
+    Context mcon;
 
     EditText editID,editPassword;
     Button btnLogin, btnSignup;
@@ -38,15 +40,20 @@ public class LoginActivity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_login);
+        mcon = this;
+
         setLayout();
 
-        insertDummyData();
+        if( Shared.getIsFirst(this) ){
+            insertDummyData();
+            Shared.setIsFirst(this, false);
+        }
     }
 
     private void insertDummyData(){
         UserDBHelper udbh = new UserDBHelper(this);
 
-        udbh.insert(1, "id", "pw", "TESTER", 9009);
+        udbh.insert(1, "admin", "1234", "관리자", 9009);
 
 
         // 임의 더미데이터 생성 - 나중에 지울것
@@ -171,47 +178,6 @@ public class LoginActivity extends AppCompatActivity {
         }
 
         vdbh.insert("봉사활동3", timestamp1, timestamp2, timestamp3, timestamp4, 300, "연탄나르는 봉사3", 0, "");
-
-        str1="2017-07-10 09:22:33.444";
-        str2="2017-07-11 10:23:33.444";
-        str3="2017-09-29 13:24:33.444";
-        str4="2017-09-30 14:25:33.444";
-
-        try{
-            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss.SSS");
-            Date parsedDate = dateFormat.parse(str1);
-            timestamp1 = new java.sql.Timestamp(parsedDate.getTime());
-        }catch(Exception e){//this generic but you can control another types of exception
-
-        }
-
-        try{
-            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss.SSS");
-            Date parsedDate = dateFormat.parse(str2);
-            timestamp2 = new java.sql.Timestamp(parsedDate.getTime());
-        }catch(Exception e){//this generic but you can control another types of exception
-
-        }
-
-        try{
-            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss.SSS");
-            Date parsedDate = dateFormat.parse(str3);
-            timestamp3 = new java.sql.Timestamp(parsedDate.getTime());
-        }catch(Exception e){//this generic but you can control another types of exception
-
-        }
-
-        try{
-            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss.SSS");
-            Date parsedDate = dateFormat.parse(str4);
-            timestamp4 = new java.sql.Timestamp(parsedDate.getTime());
-        }catch(Exception e){//this generic but you can control another types of exception
-
-        }
-
-        vdbh.insert("봉사활동4", timestamp1, timestamp2, timestamp3, timestamp4, 500, "달리기봉사1", 0, "data:image/jpeg;base64,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");
-
-
 
         str1="2017-08-10 09:22:33.444";
         str2="2017-08-11 10:23:33.444";
@@ -674,9 +640,8 @@ public class LoginActivity extends AppCompatActivity {
 
         RequestDBHelper rdbh = new RequestDBHelper(this);
         rdbh.insert(1, 9, timestamp1);
-        rdbh.insert(1, 4, timestamp2);
-        rdbh.insert(1, 5, timestamp3);
-        rdbh.insert(1, 8, timestamp4);
+        rdbh.insert(1, 7, timestamp2);
+        rdbh.insert(1, 6, timestamp3);
 
 
         CompleteDBHelper cdbh = new CompleteDBHelper(this);
@@ -691,7 +656,7 @@ public class LoginActivity extends AppCompatActivity {
         }
 
         cdbh.insert(timestamp, Common.userCode, 8);
-        cdbh.insert(Common.userCode, 7);
+        cdbh.insert(Common.userCode, 5);
 
         str="2017-05-05 00:00:00.000";
         timestamp = null;
@@ -715,6 +680,39 @@ public class LoginActivity extends AppCompatActivity {
 
         ReportDBHelper rpdbh = new ReportDBHelper(this);
         rpdbh.insertReport(3, "우앙 신나는 연탄나르기", imgUrlList);
+
+        BusinessDBHelper bdbh = new BusinessDBHelper(this);
+        String bName="여러분들 덕에 내가 삽니더";
+        String bContent="자원봉사자들이 밑반찬을 직접 만들고 배달해 줌으로써 봉화군 독거 어르신들이 \n" +
+                "건강을 유지하실 뿐 아니라 지역사회 속에서 유대관계를 경험하고 유지하면서 심리적 안정을 누리게 됩니다.";
+        String bUrl="http://happybean.phinf.naver.net/20161130_119/hlog_h07084_1480475445557C3JE6_JPEG/%C5%EB%C0%CC%B9%CC%C1%F6jpg?type=w720";
+        bdbh.insert(bName,bContent,1000000,0,bUrl);
+
+        bName="소녀가장 할머니의 치과진료를 지원해주세요";
+        bContent="홀로 남은 소녀가장 엄가영 어르신(가명)에게 치과진료를 지원합니다.\n" +
+                "홀로 남은 소녀가장 엄가영 어르신(가명)에게 12개월 식료품을 지원합니다." +
+                "엄가영 어르신(가명)의 치과진료를 통해 영양 불균형을 해소하여 건강상태 회복지원";
+        bUrl="http://happybean.phinf.naver.net/20170214_143/hlog_e03258_14870517017694L0np_JPEG/photo_1486538470jpg?type=w720";
+        bdbh.insert(bName,bContent,5000000,0,bUrl);
+
+        bName="소리없는 세상을 살아가는 어르신";
+        bContent="인공달팽이관 수술 지원으로 듣지 못해 사회적으로 소외되고 있는 어르신에게 소리를 찾아주어 \n" +
+                "사회와 소통 할 수 있는 발판을 마련해주고, 소통의 부재로 인한 고독사를 방지합니다.";
+        bUrl="http://happybean.phinf.naver.net/20170207_148/hlog_s02634_1486429594460WXuEW_JPEG/%C7%D2%BE%C6%B9%F6%C1%F6%C4%BF%B9%F6jpg?type=w720";
+        bdbh.insert(bName,bContent,6000000,0,bUrl);
+
+        bName="하루하루 살아가기 위해 폐휴지를 줍는 어르신들";
+        bContent="1. 생계형 폐휴지 수거 어르신들의 교통사고률 50% 감소\n" +
+                "2. 생계형 폐휴지 수거 어르신들의 삶의 질 향상\n" +
+                "3. 생계형 폐휴지 수거 어르신들의 생계물품지원 12회 이상\n" +
+                "4. 생계형 폐휴지 수거 어르신들의 생계 증대";
+        bUrl="http://happybean.phinf.naver.net/20160801_61/hlog_m06140_14700480282429xNPl_JPEG/IMG_7794.JPG?type=w720";
+        bdbh.insert(bName,bContent,9000000,0,bUrl);
+
+        bName="어르신들의 따뜻한 한 끼를 지켜주세요";
+        bContent="홀로 사는 어르신의 건강증진을 도모하고자 광주 서구 지역에 거주중인 독거어르신 댁에 주1회 밑반찬을 배달 드리고자 합니다.\n";
+        bUrl="http://happybean.phinf.naver.net/20170207_101/hlog_s03859_1486424923441iU6GA_JPEG/%BB%E7%C1%F8_3.JPG?type=w720";
+        bdbh.insert(bName,bContent,4000000,0,bUrl);
     }
 
     private void setLayout(){
@@ -725,18 +723,28 @@ public class LoginActivity extends AppCompatActivity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if( editID.getText().toString().trim().equals("") ){
+                    Common.makeToast(mcon, "아이디를 입력하세요.");
+                }
+                else if( editPassword.getText().toString().trim().equals("")){
+                    Common.makeToast(mcon, "비밀번호를 입력하세요.");
+                }
+                else{
+                    if(isChecked(editID.getText().toString()) == true) {//로그인 성공.
+                        Intent i = new Intent(LoginActivity.this, MainActivity.class);
 
-                // TODO : 실제 로그인 해야됨
-                //if(isChecked(editID.getText().toString()).booleanValue()==true) {//로그인 성공.
-                Intent i = new Intent(LoginActivity.this, MainActivity.class);
+                        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(i);
+                    }
+                }
+
+
+                /*Intent i = new Intent(LoginActivity.this, MainActivity.class);
 
                 i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(i);
-                //}
-                //else{//로그인 실패.
-                //Toast.makeText(LoginActivity.this,"아이디 혹은 비밀번호가 틀립니다.",Toast.LENGTH_SHORT).show();
-                //}
+                startActivity(i);*/
             }
         });
 
@@ -761,14 +769,23 @@ public class LoginActivity extends AppCompatActivity {
         User user = new User();
         user = udbh.selectUserInfo(id);
         if(user==null){
+            Common.makeToast(this, "존재하지 않는 아이디입니다.");
             return false;
         }
         else{
             if(user.userPW.equals(editPassword.getText().toString())){
-                Common.userCode=user.userCode;
+                if( user.userSort == 1 ){
+                    Shared.setIsAdmin(mcon, true);
+                }
+                else{
+                    Shared.setIsAdmin(mcon, false);
+                }
+
+                Common.userCode = user.userCode;
                 return true;
             }
             else{
+                Common.makeToast(this, "비밀번호가 틀렸습니다.");
                 return false;
             }
         }
