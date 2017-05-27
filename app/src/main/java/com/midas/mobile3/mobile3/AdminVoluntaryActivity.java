@@ -26,7 +26,6 @@ public class AdminVoluntaryActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle("봉사활동 승인");
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         mRecyclerView = (RecyclerView)findViewById(R.id.list);
         mAdapter = new AdminVoluntaryAdapter(this);
