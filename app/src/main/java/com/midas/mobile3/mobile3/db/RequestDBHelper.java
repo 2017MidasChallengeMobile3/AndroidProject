@@ -70,6 +70,13 @@ public class RequestDBHelper extends SQLiteOpenHelper {
         db.close();
     }
 
+    public void delete(int userCode, int voluntaryCode) {
+        SQLiteDatabase db = getWritableDatabase();
+        // 입력한 항목과 일치하는 행 삭제
+        db.execSQL("DELETE FROM REQUEST WHERE user_code = " + userCode + " AND voluntary_code = " + voluntaryCode + ";");
+        db.close();
+    }
+
     //select = 사용자가 봉사활동 신청한 리스트 반환
     public ArrayList<Request> selectRequest(int userCode) {
         // 읽기가 가능하게 DB 열기
