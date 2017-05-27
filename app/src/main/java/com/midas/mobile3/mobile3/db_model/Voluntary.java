@@ -16,5 +16,5 @@ public class Voluntary {
     public int voluntaryPoint;
     public String voluntaryContent;
     public int voluntarySort;
-    public String voluntaryImgUrl;
+    public String voluntaryImg;
 }
