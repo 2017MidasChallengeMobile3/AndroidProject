@@ -17,6 +17,7 @@ public class SignupActivity extends AppCompatActivity {
     EditText signUpid;
     EditText signUppassword;
     Boolean isSignUpdone;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
