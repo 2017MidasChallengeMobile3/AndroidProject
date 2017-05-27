@@ -18,42 +18,62 @@ public class VonuntaryContentActivity extends AppCompatActivity {
     ImageView imgTitle;
     TextView txtTitle, txtExtDate, txtReqDate, txtPoint, txtContents;
 
+    boolean isDone = false;
+
     FloatingActionButton fab;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_vonuntary_content);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
         data = (Voluntary)getIntent().getSerializableExtra("data");
-
+        // TODO : 봉사활동 했는지 안했는지 가져와야됨
         setLayout();
-
-
-
     }
 
     private void setLayout(){
+
+        setContentView(R.layout.activity_vonuntary_content);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle(data.voluntaryTitle);
+        setSupportActionBar(toolbar);
+
         imgTitle = (ImageView)findViewById(R.id.voluntary_contents_img_title);
         if(imgTitle!=null) Glide.with(this).load(data.voluntaryImg).into(imgTitle);
 
-
         txtTitle = (TextView)findViewById(R.id.voluntary_contents_title);
+        txtTitle.setText(data.voluntaryTitle);
+
         txtExtDate = (TextView)findViewById(R.id.voluntary_contents_excdate);
+        txtExtDate.setText(data.voluntaryExcStartDate + " ~ "+ data.voluntaryExcEndDate);
+
         txtReqDate = (TextView)findViewById(R.id.voluntary_contents_reqdate);
-        txtPoint = (TextView)findViewById(R.id.voluntary_contents_title);
-        txtContents = (TextView)findViewById(R.id.voluntary_contents_title);
+        txtReqDate.setText(data.voluntaryReqStartDate + "~" + data.voluntaryReqEndDate);
+
+        txtPoint = (TextView)findViewById(R.id.voluntary_contents_point);
+        txtPoint.setText(data.voluntaryPoint+"");
+
+        txtContents = (TextView)findViewById(R.id.voluntary_contents_contents);
+        txtContents.setText(data.voluntaryContent);
 
 
         fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                if(!isDone) {
+                    //봉사활동 신청이 안되어 있을 경우
+                    Snackbar.make(view, data.voluntaryTitle + " 신청이 완료되었습니다.", Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();
+                    fab.setImageResource(R.drawable.ic_remove_black_24dp);
+                    isDone=true;
+                }else{
+                    Snackbar.make(view, data.voluntaryTitle + " 취소가 완료되었습니다.", Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();
+                    fab.setImageResource(R.drawable.ic_add_black_24dp);
+                    isDone=false;
+                }
+                // TODO : DBupdate
             }
         });
     }
