@@ -10,6 +10,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.midas.mobile3.mobile3.db.RequestDBHelper;
+import com.midas.mobile3.mobile3.db.UserDBHelper;
+import com.midas.mobile3.mobile3.db.VoluntaryDBHelper;
 import com.midas.mobile3.mobile3.db_model.Voluntary;
 
 public class VonuntaryContentActivity extends AppCompatActivity {
@@ -56,7 +59,7 @@ public class VonuntaryContentActivity extends AppCompatActivity {
         txtContents = (TextView)findViewById(R.id.voluntary_contents_contents);
         txtContents.setText(data.voluntaryContent);
 
-
+        //여기서 봉사활동 신청.
         fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,6 +71,7 @@ public class VonuntaryContentActivity extends AppCompatActivity {
                     fab.setImageResource(R.drawable.ic_remove_black_24dp);
                     isDone=true;
                 }else{
+
                     Snackbar.make(view, data.voluntaryTitle + " 취소가 완료되었습니다.", Snackbar.LENGTH_LONG)
                             .setAction("Action", null).show();
                     fab.setImageResource(R.drawable.ic_add_black_24dp);

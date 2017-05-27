@@ -29,7 +29,7 @@ public class VoluntaryHolder extends RecyclerView.ViewHolder{
     ImageView img;
     Context mcon;
 
-    public VoluntaryHolder(View itemView, final Context mcon) {
+    public VoluntaryHolder(final View itemView, final Context mcon) {
         super(itemView);
         this.mcon = mcon;
         txtTitle = (TextView)itemView.findViewById(R.id.voluntary_recycler_item_title);
@@ -37,6 +37,7 @@ public class VoluntaryHolder extends RecyclerView.ViewHolder{
         txtPoint = (TextView)itemView.findViewById(R.id.voluntary_recycler_item_point);
         img = (ImageView)itemView.findViewById(R.id.voluntary_recycler_item_img);
 
+        //여기서 봉사활동의 id가 정해진다.
         itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

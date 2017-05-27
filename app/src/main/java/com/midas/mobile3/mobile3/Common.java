@@ -9,6 +9,7 @@ import java.text.SimpleDateFormat;
 
 public class Common {
 
+    public static int userCode;
     public static String dateToString(Timestamp ts){
         String time = new SimpleDateFormat("yyyy-MM-dd HH:mm").format(ts);
         return time;
