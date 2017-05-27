@@ -17,4 +17,10 @@ public class Voluntary {
     public String voluntaryContent;
     public int voluntarySort;
     public String voluntaryImg;
+
+    @Override
+    public String toString() {
+        String str = voluntaryCode + " : " + voluntaryTitle + " : " + voluntaryPoint + " : " + voluntaryExcEndDate;
+        return str;
+    }
 }

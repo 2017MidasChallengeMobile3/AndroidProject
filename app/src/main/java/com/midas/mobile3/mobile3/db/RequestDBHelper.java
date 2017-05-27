@@ -76,7 +76,7 @@ public class RequestDBHelper extends SQLiteOpenHelper {
 
         // DB에 있는 데이터를 쉽게 처리하기 위해 Cursor를 사용하여 테이블에 있는 모든 데이터 출력
         Cursor cursor = db.rawQuery("SELECT * " +
-                "FROM REQUEST" +
+                "FROM REQUEST " +
                 "WHERE user_code = " + userCode, null);
 
         if (cursor.getCount() > 0) {
