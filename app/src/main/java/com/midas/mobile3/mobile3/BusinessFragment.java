@@ -42,4 +42,9 @@ public class BusinessFragment extends Fragment {
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
     }
 
+    public void updateDataset(){
+        mAdapter.updateDataset();
+        mAdapter.notifyDataSetChanged();
+    }
+
 }

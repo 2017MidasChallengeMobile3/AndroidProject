@@ -10,6 +10,8 @@ import com.midas.mobile3.mobile3.Common;
 import com.midas.mobile3.mobile3.R;
 import com.midas.mobile3.mobile3.db.CompleteDBHelper;
 import com.midas.mobile3.mobile3.db.RequestDBHelper;
+import com.midas.mobile3.mobile3.db.RequestThing;
+import com.midas.mobile3.mobile3.db.UserDBHelper;
 import com.midas.mobile3.mobile3.db.VoluntaryDBHelper;
 import com.midas.mobile3.mobile3.db_model.ActiveThing;
 import com.midas.mobile3.mobile3.db_model.Complete;

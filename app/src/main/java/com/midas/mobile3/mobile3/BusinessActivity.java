@@ -16,8 +16,12 @@ import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
+import com.midas.mobile3.mobile3.db.BusinessDBHelper;
+import com.midas.mobile3.mobile3.db.DonationDBHelper;
 import com.midas.mobile3.mobile3.db.RequestDBHelper;
+import com.midas.mobile3.mobile3.db.UserDBHelper;
 import com.midas.mobile3.mobile3.db_model.Business;
+import com.midas.mobile3.mobile3.db_model.User;
 import com.midas.mobile3.mobile3.db_model.Voluntary;
 import com.squareup.picasso.Picasso;
 
@@ -30,8 +34,6 @@ public class BusinessActivity extends AppCompatActivity {
     ImageView imgTitle;
     TextView txtTitle, txtPoint, txtContents;
     Button btnRequest;
-
-    boolean isDone = false;
 
     FloatingActionButton fab;
 
@@ -62,7 +64,7 @@ public class BusinessActivity extends AppCompatActivity {
         txtTitle.setText(data.businessName);
 
         txtPoint = (TextView)findViewById(R.id.business_contents_point);
-        txtPoint.setText(data.businessCurPoint+"원 / "+data.businessGoalPoint+"원");
+        txtPoint.setText(data.businessCurPoint+"원 / " + data.businessGoalPoint+"원");
 
         txtContents = (TextView)findViewById(R.id.business_contents_contents);
         txtContents.setText(data.businessContent.trim());
@@ -83,30 +85,48 @@ public class BusinessActivity extends AppCompatActivity {
                 requestBusiness();
             }
         });
+        fab.setVisibility(View.INVISIBLE);
     }
 
     private void requestBusiness(){
-        if(!isDone) {
-            getIntDialog("기부금액", 10000, 0, 10000, new IntEventListener() {
+        //TODO : user로 바꾸기
+        //UserDBHelper udbh = new UserDBHelper(mcon);
+        //User user = udbh.selectUserInfo(Common.userCode);
+
+            //getIntDialog("기부금액", 0, 0, user.userCurPoint, new IntEventListener() {//
+        getIntDialog("기부금액", 0, 0, 10000, new IntEventListener() {
                 @Override
                 public void intEvent(int val) {
-                    // TODO : val 만큼 기부해 줘야됨(DB)
-                    //봉사활동 신청이 안되어 있을 경우
-                    RequestDBHelper rdbh = new RequestDBHelper(mcon);
-                    //rdbh.insert(Common.userCode, data.voluntaryCode);
 
+                    //봉사활동 신청이 안되어 있을 경우
+
+                    if( val == 0 ){
+                        Snackbar.make(fab, "0원은 기부가 안됩니다.", Snackbar.LENGTH_LONG)
+                                .setAction("Action", null).show();
+                        return ;
+                    }
+
+                    DonationDBHelper ddbh = new DonationDBHelper(mcon);
+                    ddbh.insert(Common.userCode, data.businessCode, val);
+
+                    String curPointStr = txtPoint.getText().toString().split("/")[0];
+                    curPointStr = curPointStr.substring(0, curPointStr.length() - 2);
+
+                    String maxPointStr = txtPoint.getText().toString().split("/")[1];
+                    maxPointStr = maxPointStr.substring(1, maxPointStr.length() - 1);
+
+                    int point = Integer.parseInt(curPointStr) + val;
+                    txtPoint.setText(point+"원 / " + maxPointStr+"원");
+
+                    BusinessDBHelper bdbh = new BusinessDBHelper(mcon);
+                    bdbh.updateBusinessCurPoint(data.businessCode, point);
+                    if(MainActivity.businessFragment!=null){
+                        MainActivity.businessFragment.updateDataset();
+                    }
                     Snackbar.make(fab, data.businessName + " 신청이 완료되었습니다.", Snackbar.LENGTH_LONG)
                             .setAction("Action", null).show();
-                    fab.setImageResource(R.drawable.ic_remove_black_24dp);
-                    btnRequest.setText("기부 완료");
-                    isDone=true;
-                    txtPoint.setText((data.businessCurPoint+val)+"원 / "+data.businessGoalPoint+"원");
                 }
             });
-        }else{
-            Snackbar.make(fab, "이미 기부하였습니다.", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show();
-        }
     }
 
     @Override

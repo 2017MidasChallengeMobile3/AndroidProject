@@ -49,4 +49,9 @@ public class BusinessAdapter extends RecyclerView.Adapter<BusinessHolder>{
 
         return businessList.size();
     }
+
+    public void updateDataset(){
+        BusinessDBHelper bdbh  = new BusinessDBHelper(mcon);
+        this.businessList = bdbh.selectBusinessIng();
+    }
 }

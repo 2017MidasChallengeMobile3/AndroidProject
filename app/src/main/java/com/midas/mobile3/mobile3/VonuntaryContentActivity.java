@@ -133,8 +133,11 @@ public class VonuntaryContentActivity extends AppCompatActivity {
     private void requestVoluntary(){
         if(status == 0){ // 신청가능
             //봉사활동 신청이 안되어 있을 경우
+            VoluntaryDBHelper vdbh = new VoluntaryDBHelper(mcon);
+            Voluntary voluntary = vdbh.selectVoluntaryInfo(data.voluntaryCode);
+
             RequestDBHelper rdbh = new RequestDBHelper(mcon);
-            rdbh.insert(Common.userCode, data.voluntaryCode);
+            rdbh.insert(Common.userCode, data.voluntaryCode, voluntary.voluntaryExcEndDate);
 
             Snackbar.make(fab, data.voluntaryTitle + " 신청이 완료되었습니다.", Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show();

@@ -55,16 +55,9 @@ public class RequestDBHelper extends SQLiteOpenHelper {
     }
 
     //insert = user가 봉사활동 신청
-    public void insert(int userCode, int vsCode) {
+    public void insert(int userCode, int vsCode, Timestamp ts) {
         // 읽고 쓰기가 가능하게 DB 열기
         SQLiteDatabase db = getWritableDatabase();
-
-        //현재시간 가져오기
-        SimpleDateFormat formatter = new SimpleDateFormat ("yyyy-MM-dd hh:mm:ss");
-        Calendar cal = Calendar.getInstance();
-        String today = null;
-        today = formatter.format(cal.getTime());
-        Timestamp ts = Timestamp.valueOf(today);
 
         // DB에 입력한 값으로 행 추가
         db.execSQL("INSERT INTO REQUEST(request_sort, request_date, user_code, vs_code) " +
@@ -88,6 +81,37 @@ public class RequestDBHelper extends SQLiteOpenHelper {
     }
 
     //select = 사용자가 봉사활동 신청한 리스트 반환
+    public ArrayList<Request> selectCompleteRequest() {
+        // 읽기가 가능하게 DB 열기
+        ArrayList<Request> result = null;
+        SQLiteDatabase db = getReadableDatabase();
+
+        // DB에 있는 데이터를 쉽게 처리하기 위해 Cursor를 사용하여 테이블에 있는 모든 데이터 출력
+        Cursor cursor = db.rawQuery("SELECT * " +
+                "FROM REQUEST " +
+                "WHERE request_date <= CURRENT_TIMESTAMP", null);
+
+        if (cursor.getCount() > 0) {
+            result = new ArrayList<Request>();
+
+            Request node = null;
+
+            while (cursor.moveToNext()) {
+                node = new Request();
+
+                node.requestCode = cursor.getInt(0);
+                node.requestSort = cursor.getInt(1);
+                node.requestDate = Timestamp.valueOf(cursor.getString(2));
+                node.userCode = cursor.getInt(3);
+                node.vsCode = cursor.getInt(4);
+
+                result.add(node);
+            }
+        }
+
+        return result;
+    }
+
     public ArrayList<Request> selectRequest(int userCode) {
         // 읽기가 가능하게 DB 열기
         ArrayList<Request> result = null;
@@ -129,8 +153,6 @@ public class RequestDBHelper extends SQLiteOpenHelper {
                 "FROM REQUEST " +
                 "WHERE user_code = " + userCode + " AND vs_code = " + voluntaryCode, null);
 
-
-        System.out.println("싸사사사사사 : " + cursor.getCount() + " / " + userCode + " / " + voluntaryCode);
 
         if (cursor.getCount() > 0) {
             result = new ArrayList<Request>();
