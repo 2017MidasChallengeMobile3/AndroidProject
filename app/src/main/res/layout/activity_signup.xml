@@ -79,6 +79,7 @@
 
                 <Button
                     android:text="가입"
+                    android:id="@+id/signUpbtn"
                     android:layout_marginTop="30dp"
                     android:background="@drawable/btn_round_gray_stroke"
                     android:layout_gravity="center"
@@ -86,9 +87,6 @@
                     android:layout_height="50dp" />
 
             </LinearLayout>
-
-
-
         </RelativeLayout>
 
 
