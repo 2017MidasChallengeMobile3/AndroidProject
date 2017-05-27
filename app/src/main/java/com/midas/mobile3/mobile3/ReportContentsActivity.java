@@ -11,11 +11,16 @@ import android.widget.TextView;
 
 import com.midas.mobile3.mobile3.controller.ReportContentAdapter;
 import com.midas.mobile3.mobile3.db_model.ReportThing;
+import com.midas.mobile3.mobile3.db_model.Business;
+import com.midas.mobile3.mobile3.db_model.ReportThing;
+
+import java.util.ArrayList;
 
 public class ReportContentsActivity extends AppCompatActivity {
 
     // TODO : 데이터 모델 바꿔야됨
     Context mcon;
+    ArrayList<String> imgUrlList;
     ReportThing data;
     TextView txtTitle, txtPoint, txtContents;
 
@@ -38,6 +43,12 @@ public class ReportContentsActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        if( data.reportImgUrlList != null && data.reportImgUrlList.size() > 0){
+            imgUrlList = data.reportImgUrlList;
+
+            //TODO : 이미지 리사이클뷰로 하면 됨
+        }
+
         txtTitle = (TextView)findViewById(R.id.report_contents_title);
         txtTitle.setText(data.business.businessName);
 
@@ -51,6 +62,7 @@ public class ReportContentsActivity extends AppCompatActivity {
         mAdapter = new ReportContentAdapter(this, data.reportImgUrlList);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, true));
         mRecyclerView.setAdapter(mAdapter);
+
 
     }
 

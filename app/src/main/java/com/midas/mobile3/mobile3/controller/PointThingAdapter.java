@@ -46,7 +46,7 @@ public class PointThingAdapter extends RecyclerView.Adapter<PointThingHolder>{
             for(int i=0; i<completeList.size(); i++){
                 pointThing = new PointThing();
 
-                pointThing.code = completeList.get(i).completeCode;
+                pointThing.code = completeList.get(i).vsCode;
                 pointThing.sort = 1;
                 pointThing.date = completeList.get(i).completeDate;
                 pointThing.point = vdbh.selectVoluntaryInfo(completeList.get(i).vsCode).voluntaryPoint;
@@ -59,13 +59,12 @@ public class PointThingAdapter extends RecyclerView.Adapter<PointThingHolder>{
         ArrayList<Donation> donationList =  ddbh.selectDonation(1); //TODO : 유저코드 박을것
 
         if( donationList != null ){
-            VoluntaryDBHelper vdbh = new VoluntaryDBHelper(mcon);
             PointThing pointThing = null;
 
             for(int i=0; i<donationList.size(); i++){
                 pointThing = new PointThing();
 
-                pointThing.code = donationList.get(i).donationCode;
+                pointThing.code = donationList.get(i).businessCode;
                 pointThing.sort = 2;
                 pointThing.date = donationList.get(i).donationDate;
                 pointThing.point = donationList.get(i).donationPoint;
@@ -80,10 +79,10 @@ public class PointThingAdapter extends RecyclerView.Adapter<PointThingHolder>{
             Collections.sort(pointThingList, new Comparator<PointThing>() {
                 @Override
                 public int compare(PointThing o1, PointThing o2) {
-                    if( o1.date.getTime() > o2.date.getTime() ){
+                    if( o1.date.getTime() < o2.date.getTime() ){
                         return 1;
                     }
-                    else if( o1.date.getTime() < o2.date.getTime() ){
+                    else if( o1.date.getTime() > o2.date.getTime() ){
                         return -1;
                     }
                     else{

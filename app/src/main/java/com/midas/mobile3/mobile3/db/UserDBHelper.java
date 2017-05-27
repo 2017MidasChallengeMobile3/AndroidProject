@@ -92,6 +92,31 @@ public class UserDBHelper extends SQLiteOpenHelper {
         return result;
     }
 
+    public User selectUserInfo(int userCode) {
+        // 읽기가 가능하게 DB 열기
+        User result = null;
+        SQLiteDatabase db = getReadableDatabase();
+
+        // DB에 있는 데이터를 쉽게 처리하기 위해 Cursor를 사용하여 테이블에 있는 모든 데이터 출력
+        Cursor cursor = db.rawQuery("SELECT * " +
+                "FROM USER " +
+                "WHERE user_code = '" + userCode + "'", null);
+
+        if( cursor.getCount() > 0 ){
+            result = new User();
+
+            while (cursor.moveToNext()) {
+                result.userCode = cursor.getInt(0);
+                result.userSort = cursor.getInt(1);
+                result.userId = cursor.getString(2);
+                result.userPW = cursor.getString(3);
+                result.userName = cursor.getString(4);
+                result.userCurPoint = cursor.getInt(5);
+            }
+        }
+        return result;
+    }
+
     //update
     public void updateUserCurPoint(int code, int point) {
         SQLiteDatabase db = getWritableDatabase();
