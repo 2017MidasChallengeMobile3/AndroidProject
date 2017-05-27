@@ -101,7 +101,7 @@ public class VoluntaryDBHelper extends SQLiteOpenHelper {
                 result.voluntaryPoint= cursor.getInt(6);
                 result.voluntaryContent = cursor.getString(7);
                 result.voluntarySort = cursor.getInt(8);
-                result.voluntaryImgUrl = cursor.getString(9);
+                result.voluntaryImg= cursor.getString(9);
             }
         }
 
@@ -131,7 +131,7 @@ public class VoluntaryDBHelper extends SQLiteOpenHelper {
                 result.voluntaryPoint= cursor.getInt(6);
                 result.voluntaryContent = cursor.getString(7);
                 result.voluntarySort = cursor.getInt(8);
-                result.voluntaryImgUrl = cursor.getString(9);
+                result.voluntaryImg = cursor.getString(9);
             }
         }
 
