@@ -3,6 +3,7 @@ package com.midas.mobile3.mobile3;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -32,7 +33,6 @@ public class VoluntaryFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_voluntary, container, false);
         setLayout(v);
 
-
         return v;
     }
 
@@ -42,5 +42,4 @@ public class VoluntaryFragment extends Fragment {
         mRecyclerView.setAdapter(mAdapter);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
     }
-
 }

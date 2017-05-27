@@ -72,6 +72,16 @@ public class DonationDBHelper extends SQLiteOpenHelper {
         db.close();
     }
 
+    public void insert(Timestamp ts, int userCode, int businessCode, int point) {
+        // 읽고 쓰기가 가능하게 DB 열기
+        SQLiteDatabase db = getWritableDatabase();
+
+        // DB에 입력한 값으로 행 추가
+        db.execSQL("INSERT INTO DONATION(donation_date, user_code, business_code, donation_point) " +
+                "VALUES ('" + ts.toString() + "', " + userCode + ", " + businessCode + ", " + point + ");");
+        db.close();
+    }
+
     //delete = 쓸일 없을듯
     public void delete(int donationCode) {
         SQLiteDatabase db = getWritableDatabase();

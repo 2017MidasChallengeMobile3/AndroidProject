@@ -34,6 +34,8 @@ public class PointThingAdapter extends RecyclerView.Adapter<PointThingHolder>{
     public PointThingAdapter(Context mcon){
         this.mcon = mcon;
 
+        pointThingList = new ArrayList<PointThing>();
+
         CompleteDBHelper cdbh = new CompleteDBHelper(mcon);
         ArrayList<Complete> completeList = cdbh.selectComplete(1); //TODO : 유저코드 박을것
 
@@ -42,6 +44,8 @@ public class PointThingAdapter extends RecyclerView.Adapter<PointThingHolder>{
             PointThing pointThing = null;
 
             for(int i=0; i<completeList.size(); i++){
+                pointThing = new PointThing();
+
                 pointThing.code = completeList.get(i).completeCode;
                 pointThing.sort = 1;
                 pointThing.date = completeList.get(i).completeDate;
@@ -59,6 +63,8 @@ public class PointThingAdapter extends RecyclerView.Adapter<PointThingHolder>{
             PointThing pointThing = null;
 
             for(int i=0; i<donationList.size(); i++){
+                pointThing = new PointThing();
+
                 pointThing.code = donationList.get(i).donationCode;
                 pointThing.sort = 2;
                 pointThing.date = donationList.get(i).donationDate;

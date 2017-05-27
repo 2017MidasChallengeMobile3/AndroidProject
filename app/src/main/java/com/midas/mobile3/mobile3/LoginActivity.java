@@ -11,6 +11,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.midas.mobile3.mobile3.db.CompleteDBHelper;
+import com.midas.mobile3.mobile3.db.DonationDBHelper;
 import com.midas.mobile3.mobile3.db.UserDBHelper;
 import com.midas.mobile3.mobile3.db.VoluntaryDBHelper;
 import com.midas.mobile3.mobile3.db_model.User;
@@ -659,6 +661,34 @@ public class LoginActivity extends AppCompatActivity {
 
 
         vdbh.insert("좋은부모되기 교육 및 홍보 활동", timestamp1, timestamp2, timestamp3, timestamp4, 220, volContent, 0, "http://news20.busan.com/content/image/2017/04/02/20170402000089_0.jpg");
+
+        CompleteDBHelper cdbh = new CompleteDBHelper(this);
+        String str="2017-05-01 00:00:00.000";
+        Timestamp timestamp = null;
+
+        try{
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss.SSS");
+            Date parsedDate = dateFormat.parse(str);
+            timestamp = new java.sql.Timestamp(parsedDate.getTime());
+        }catch(Exception e){//this generic but you can control another types of exception
+        }
+
+        cdbh.insert(timestamp, Common.userCode, 3);
+        cdbh.insert(Common.userCode, 2);
+
+        str="2017-05-05 00:00:00.000";
+        timestamp = null;
+
+        try{
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss.SSS");
+            Date parsedDate = dateFormat.parse(str);
+            timestamp = new java.sql.Timestamp(parsedDate.getTime());
+        }catch(Exception e){//this generic but you can control another types of exception
+        }
+
+        DonationDBHelper ddbh = new DonationDBHelper(this);
+        ddbh.insert(Common.userCode, 1, 100);
+        ddbh.insert(timestamp, Common.userCode, 3, 200);
     }
 
     private void setLayout(){

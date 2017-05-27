@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.midas.mobile3.mobile3.Common;
 import com.midas.mobile3.mobile3.R;
 import com.midas.mobile3.mobile3.db.CompleteDBHelper;
 import com.midas.mobile3.mobile3.db.RequestDBHelper;
@@ -34,14 +35,21 @@ public class ActiveThingAdapter extends RecyclerView.Adapter<ActiveThingHolder>{
 
     public ActiveThingAdapter(Context mcon){
         this.mcon=mcon;
+
+        activeThingList = new ArrayList<ActiveThing>();
+
         RequestDBHelper rdbh  = new RequestDBHelper(mcon);
-        ArrayList<Request> requestList  = rdbh.selectRequest(1); //TODO : 유저코드 박을것
+        ArrayList<Request> requestList  = rdbh.selectRequest(Common.userCode); //TODO : 유저코드 박을것
 
         if( requestList != null ){
             VoluntaryDBHelper vdbh = new VoluntaryDBHelper(mcon);
             ActiveThing activeThing = null;
 
+            System.out.println("리코리코리" + requestList.get(0).requestCode);
+
             for(int i=0; i<requestList.size(); i++){
+                activeThing = new ActiveThing();
+
                 activeThing.code = requestList.get(i).requestCode;
                 activeThing.sort = requestList.get(i).requestSort;
                 activeThing.date = requestList.get(i).requestDate;
@@ -52,13 +60,15 @@ public class ActiveThingAdapter extends RecyclerView.Adapter<ActiveThingHolder>{
         }
 
         CompleteDBHelper cdbh = new CompleteDBHelper(mcon);
-        ArrayList<Complete> completeList = cdbh.selectComplete(1); //TODO : 유저코드 박을것
+        ArrayList<Complete> completeList = cdbh.selectComplete(Common.userCode); //TODO : 유저코드 박을것
 
         if( completeList != null ){
             VoluntaryDBHelper vdbh = new VoluntaryDBHelper(mcon);
             ActiveThing activeThing = null;
 
             for(int i=0; i<completeList.size(); i++){
+                activeThing = new ActiveThing();
+
                 activeThing.code = completeList.get(i).completeCode;
                 activeThing.sort = 2;
                 activeThing.date = completeList.get(i).completeDate;
@@ -68,22 +78,26 @@ public class ActiveThingAdapter extends RecyclerView.Adapter<ActiveThingHolder>{
             }
         }
 
-        // activeThingList.voluntary
-
-        Collections.sort(activeThingList, new Comparator<ActiveThing>() {
-            @Override
-            public int compare(ActiveThing o1, ActiveThing o2) {
-                if( o1.date.getTime() > o2.date.getTime() ){
-                    return 1;
+        if( activeThingList == null ){
+            System.out.println("아 씨발 널");
+        }
+        else{
+            System.out.println("좆 싸이즈" + activeThingList.size());
+            Collections.sort(activeThingList, new Comparator<ActiveThing>() {
+                @Override
+                public int compare(ActiveThing o1, ActiveThing o2) {
+                    if( o1.date.getTime() > o2.date.getTime() ){
+                        return 1;
+                    }
+                    else if( o1.date.getTime() < o2.date.getTime() ){
+                        return -1;
+                    }
+                    else{
+                        return 0;
+                    }
                 }
-                else if( o1.date.getTime() < o2.date.getTime() ){
-                    return -1;
-                }
-                else{
-                    return 0;
-                }
-            }
-        });
+            });
+        }
     }
 
 
