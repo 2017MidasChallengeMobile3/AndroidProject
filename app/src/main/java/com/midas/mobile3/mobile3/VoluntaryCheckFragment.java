@@ -41,4 +41,9 @@ public class VoluntaryCheckFragment extends Fragment {
         mRecyclerView.setAdapter(mAdapter);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
     }
+    public void updateDataset(){
+        mAdapter.updateDataset();
+        mAdapter.notifyDataSetChanged();
+    }
+
 }

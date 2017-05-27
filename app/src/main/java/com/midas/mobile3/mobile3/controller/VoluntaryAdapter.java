@@ -25,8 +25,7 @@ public class VoluntaryAdapter extends RecyclerView.Adapter<VoluntaryHolder>{
     public VoluntaryAdapter(Context mcon){
         this.mcon=mcon;
         // 마감임박순 -> 신청기간 안지난것만
-        VoluntaryDBHelper vdbh  = new VoluntaryDBHelper(mcon);
-        this.voluntaryList = vdbh.selectVoluntaryInfoIng();
+        updateDataset();
         /*if( this.voluntaryList != null ){
             for(int i=0; i<this.voluntaryList.size(); i++){
                 System.out.println(this.voluntaryList.get(i));
@@ -53,5 +52,10 @@ public class VoluntaryAdapter extends RecyclerView.Adapter<VoluntaryHolder>{
         }
 
         return voluntaryList.size();
+    }
+
+    public void updateDataset(){
+        VoluntaryDBHelper vdbh  = new VoluntaryDBHelper(mcon);
+        this.voluntaryList = vdbh.selectVoluntaryInfoIng();
     }
 }

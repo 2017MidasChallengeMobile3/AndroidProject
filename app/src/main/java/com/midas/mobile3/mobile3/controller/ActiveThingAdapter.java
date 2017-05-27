@@ -35,7 +35,31 @@ public class ActiveThingAdapter extends RecyclerView.Adapter<ActiveThingHolder>{
 
     public ActiveThingAdapter(Context mcon){
         this.mcon=mcon;
+        updateDataset();
+    }
 
+
+    @Override
+    public ActiveThingHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View v = LayoutInflater.from(mcon).inflate(R.layout.item_voluntary,parent,false);
+        return new ActiveThingHolder(v, mcon);
+    }
+
+    @Override
+    public void onBindViewHolder(ActiveThingHolder holder, int position) {
+        holder.setData(activeThingList.get(position));
+    }
+
+    @Override
+    public int getItemCount() {
+        if( this.activeThingList == null ) {
+            activeThingList = new ArrayList<ActiveThing>();
+        }
+
+        return activeThingList.size();
+    }
+
+    public void updateDataset(){
         activeThingList = new ArrayList<ActiveThing>();
 
         RequestDBHelper rdbh  = new RequestDBHelper(mcon);
@@ -79,10 +103,8 @@ public class ActiveThingAdapter extends RecyclerView.Adapter<ActiveThingHolder>{
         }
 
         if( activeThingList == null ){
-            System.out.println("아 씨발 널");
         }
         else{
-            System.out.println("좆 싸이즈" + activeThingList.size());
             Collections.sort(activeThingList, new Comparator<ActiveThing>() {
                 @Override
                 public int compare(ActiveThing o1, ActiveThing o2) {
@@ -98,26 +120,5 @@ public class ActiveThingAdapter extends RecyclerView.Adapter<ActiveThingHolder>{
                 }
             });
         }
-    }
-
-
-    @Override
-    public ActiveThingHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(mcon).inflate(R.layout.item_voluntary,parent,false);
-        return new ActiveThingHolder(v, mcon);
-    }
-
-    @Override
-    public void onBindViewHolder(ActiveThingHolder holder, int position) {
-        holder.setData(activeThingList.get(position));
-    }
-
-    @Override
-    public int getItemCount() {
-        if( this.activeThingList == null ) {
-            activeThingList = new ArrayList<ActiveThing>();
-        }
-
-        return activeThingList.size();
     }
 }

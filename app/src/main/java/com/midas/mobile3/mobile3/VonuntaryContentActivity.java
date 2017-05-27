@@ -159,6 +159,10 @@ public class VonuntaryContentActivity extends AppCompatActivity {
             btnRequest.setText("이미 완료한 봉사활동");
             btnRequest.setClickable(false);
         }
+
+        if( MainActivity.voluntaryCheckFragment != null){
+            MainActivity.voluntaryCheckFragment.updateDataset();
+        }
     }
 
     @Override
