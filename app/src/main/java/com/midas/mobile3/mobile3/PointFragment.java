@@ -8,12 +8,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.midas.mobile3.mobile3.controller.PointAdapter;
+import com.midas.mobile3.mobile3.controller.PointThingAdapter;
 
 public class PointFragment extends Fragment {
 
     RecyclerView mRecyclerView;
-    PointAdapter mAdapter;
+    PointThingAdapter mAdapter;
 
     public PointFragment() {
         // Required empty public constructor
@@ -36,7 +36,7 @@ public class PointFragment extends Fragment {
     }
     private void setLayout(View v){
         mRecyclerView = (RecyclerView)v.findViewById(R.id.list);
-        mAdapter = new PointAdapter(getActivity());
+        mAdapter = new PointThingAdapter(getActivity());
         mRecyclerView.setAdapter(mAdapter);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
     }
