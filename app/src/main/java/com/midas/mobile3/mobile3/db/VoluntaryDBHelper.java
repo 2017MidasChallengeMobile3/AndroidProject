@@ -39,6 +39,7 @@ public class VoluntaryDBHelper extends SQLiteOpenHelper {
                 "vs_point INTEGER NOT NULL," +
                 "vs_content VARCHAR(3000) NOT NULL," +
                 "vs_sort INTEGER NOT NULL" +
+                "vs_img_url VARCHAR(500) NOT NULL" +
                 "); ";
 
         sqLiteDatabase.execSQL(SQL_CREATE_VOLUNTARY_TABLE);
@@ -56,15 +57,15 @@ public class VoluntaryDBHelper extends SQLiteOpenHelper {
 
     //insert = 회원가입
     public void insert(String title, Timestamp req_start_date, Timestamp req_end_date, Timestamp exc_start_date,
-                       Timestamp exc_end_date, int point, String content ,int sort) {
+                       Timestamp exc_end_date, int point, String content ,int sort, String imgUrl) {
         // 읽고 쓰기가 가능하게 DB 열기
         SQLiteDatabase db = getWritableDatabase();
         // DB에 입력한 값으로 행 추가
         //timestamp가 ''가 들어가나 안들어가나 모르겠다!.
 
-        db.execSQL("INSERT INTO USER(vs_title, vs_req_start_date, vs_req_end_date, vs_exc_start_date, vs_exc_end_date, vs_point, vs_content, vs_sort) " +
+        db.execSQL("INSERT INTO USER(vs_title, vs_req_start_date, vs_req_end_date, vs_exc_start_date, vs_exc_end_date, vs_point, vs_content, vs_sort, vs_img_url) " +
                 "VALUES ('" + title + "', '" + req_start_date + "', '" + req_end_date +"', '" + exc_start_date + "', '" + exc_end_date + "', "
-                + point + ", '" + content + "', " + sort + ");");
+                + point + ", '" + content + "', " + sort + ", '" + imgUrl + "');");
         db.close();
     }
 
@@ -100,6 +101,37 @@ public class VoluntaryDBHelper extends SQLiteOpenHelper {
                 result.voluntaryPoint= cursor.getInt(6);
                 result.voluntaryContent = cursor.getString(7);
                 result.voluntarySort = cursor.getInt(8);
+                result.voluntaryImgUrl = cursor.getString(9);
+            }
+        }
+
+        return result;
+    }
+
+    public Voluntary selectVoluntaryInfo(int vsCode) {
+        // 읽기가 가능하게 DB 열기
+        Voluntary result = null;
+        SQLiteDatabase db = getReadableDatabase();
+
+        // DB에 있는 데이터를 쉽게 처리하기 위해 Cursor를 사용하여 테이블에 있는 모든 데이터 출력
+        Cursor cursor = db.rawQuery("SELECT * " +
+                "FROM VOLUNTARY" +
+                "WHERE vs_code = " + vsCode, null);
+
+        if( cursor.getCount() > 0 ){
+            result = new Voluntary();
+
+            while (cursor.moveToNext()) {
+                result.voluntaryCode = cursor.getInt(0);
+                result.voluntaryTitle = cursor.getString(1);
+                result.voluntaryReqStartDate = Timestamp.valueOf(cursor.getString(2));
+                result.voluntaryReqEndDate = Timestamp.valueOf(cursor.getString(3));
+                result.voluntaryExcStartDate = Timestamp.valueOf(cursor.getString(4));
+                result.voluntaryExcEndDate = Timestamp.valueOf(cursor.getString(5));
+                result.voluntaryPoint= cursor.getInt(6);
+                result.voluntaryContent = cursor.getString(7);
+                result.voluntarySort = cursor.getInt(8);
+                result.voluntaryImgUrl = cursor.getString(9);
             }
         }
 

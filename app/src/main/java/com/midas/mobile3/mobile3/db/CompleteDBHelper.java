@@ -9,6 +9,10 @@ import com.midas.mobile3.mobile3.db_model.Complete;
 
 import java.util.ArrayList;
 
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 /**
  * Created by tjssm on 2017-05-27.
  */
@@ -30,6 +34,7 @@ public class CompleteDBHelper extends SQLiteOpenHelper {
         // Create a table to hold waitlist data
         final String SQL_CREATE_COMPLETE_TABLE = "CREATE TABLE COMPLETE (" +
                 "complete_code INTEGER PRIMARY KEY AUTOINCREMENT," +
+                "complete_date TIMESTAMP NOT NULL," +
                 "user_code INTEGER NOT NULL," +
                 "vs_code INTEGER NOT NULL," +
                 "FOREIGN KEY (user_code) REFERENCES USER (user_code) ON DELETE CASCADE," +
@@ -53,9 +58,17 @@ public class CompleteDBHelper extends SQLiteOpenHelper {
     public void insert(int userCode, int vsCode) {
         // 읽고 쓰기가 가능하게 DB 열기
         SQLiteDatabase db = getWritableDatabase();
+
+        //현재시간 가져오기
+        SimpleDateFormat formatter = new SimpleDateFormat ("yyyy-MM-dd hh:mm:ss");
+        Calendar cal = Calendar.getInstance();
+        String today = null;
+        today = formatter.format(cal.getTime());
+        Timestamp ts = Timestamp.valueOf(today);
+
         // DB에 입력한 값으로 행 추가
-        db.execSQL("INSERT INTO COMPLETE(user_code, vs_code) " +
-                "VALUES (" + userCode + ", " + vsCode + ");");
+        db.execSQL("INSERT INTO COMPLETE(complete_date, user_code, vs_code) " +
+                "VALUES ('" + ts.toString() + "', " + userCode + ", " + vsCode + ");");
         db.close();
     }
 
@@ -87,8 +100,9 @@ public class CompleteDBHelper extends SQLiteOpenHelper {
                 node = new Complete();
 
                 node.completeCode = cursor.getInt(0);
-                node.userCode = cursor.getInt(1);
-                node.vsCode = cursor.getInt(2);
+                node.completeDate = Timestamp.valueOf(cursor.getString(1));
+                node.userCode = cursor.getInt(2);
+                node.vsCode = cursor.getInt(3);
 
                 result.add(node);
             }
