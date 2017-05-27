@@ -27,11 +27,11 @@ public class VoluntaryAdapter extends RecyclerView.Adapter<VoluntaryHolder>{
         // 마감임박순 -> 신청기간 안지난것만
         VoluntaryDBHelper vdbh  = new VoluntaryDBHelper(mcon);
         this.voluntaryList = vdbh.selectVoluntaryInfoIng();
-        if( this.voluntaryList != null ){
+        /*if( this.voluntaryList != null ){
             for(int i=0; i<this.voluntaryList.size(); i++){
                 System.out.println(this.voluntaryList.get(i));
             }
-        }
+        }*/
     }
 
 

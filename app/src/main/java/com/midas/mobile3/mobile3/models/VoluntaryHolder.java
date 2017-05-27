@@ -9,6 +9,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.midas.mobile3.mobile3.Common;
 import com.midas.mobile3.mobile3.MainActivity;
 import com.midas.mobile3.mobile3.R;
 import com.midas.mobile3.mobile3.VoluntaryFragment;
@@ -47,12 +48,9 @@ public class VoluntaryHolder extends RecyclerView.ViewHolder{
     }
 
     public void setData(Voluntary data){
-        String reqStart = new SimpleDateFormat("yyyy-MM-dd HH:mm").format(data.voluntaryReqStartDate);
-        String reqEnd = new SimpleDateFormat("yyyy-MM-dd HH:mm").format(data.voluntaryReqStartDate);
-
         this.data = data;
         txtTitle.setText(data.voluntaryTitle);
-        txtDate.setText(data.voluntaryReqStartDate+ " ~ " + data.voluntaryReqEndDate);
+        txtDate.setText(Common.dateToString(data.voluntaryReqStartDate) + " ~ " + Common.dateToString(data.voluntaryReqEndDate));
         txtPoint.setText(data.voluntaryPoint+"P");
         Glide.with(mcon).load(data.voluntaryImg).into(img);
     }

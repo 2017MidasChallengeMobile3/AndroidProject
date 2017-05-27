@@ -35,9 +35,10 @@ public class DonationDBHelper extends SQLiteOpenHelper {
                 "donation_code INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "donation_date TIMESTAMP NOT NULL," +
                 "user_code INTEGER NOT NULL," +
-                "vs_code INTEGER NOT NULL," +
+                "business_code INTEGER NOT NULL," +
+                "donation_point INTEGER NOT NULL," +
                 "FOREIGN KEY (user_code) REFERENCES USER (user_code) ON DELETE CASCADE," +
-                "FOREIGN KEY (vs_code) REFERENCES VOLUNTARY_SERVICE (vs_code) ON DELETE CASCADE," +
+                "FOREIGN KEY (business_code) REFERENCES BUSINESS (business_code) ON DELETE CASCADE," +
                 "); ";
 
         sqLiteDatabase.execSQL(SQL_CREATE_DONATION_TABLE);
@@ -54,7 +55,7 @@ public class DonationDBHelper extends SQLiteOpenHelper {
     }
 
     //insert = 관리자가 봉사활동 했다고 승인
-    public void insert(int userCode, int vsCode) {
+    public void insert(int userCode, int businessCode, int point) {
         // 읽고 쓰기가 가능하게 DB 열기
         SQLiteDatabase db = getWritableDatabase();
 
@@ -66,8 +67,8 @@ public class DonationDBHelper extends SQLiteOpenHelper {
         Timestamp ts = Timestamp.valueOf(today);
 
         // DB에 입력한 값으로 행 추가
-        db.execSQL("INSERT INTO DONATION(donation_date, user_code, vs_code) " +
-                "VALUES ('" + ts.toString() + "', " + userCode + ", " + vsCode + ");");
+        db.execSQL("INSERT INTO DONATION(donation_date, user_code, business_code, donation_point) " +
+                "VALUES ('" + ts.toString() + "', " + userCode + ", " + businessCode + ", " + point + ");");
         db.close();
     }
 
@@ -79,7 +80,7 @@ public class DonationDBHelper extends SQLiteOpenHelper {
         db.close();
     }
 
-    //select = 사용자가 봉사활동 완료한 리스트 반환
+    //select = 사용자가 기부한 리스트
     public ArrayList<Donation> selectDonation(int userCode) {
         // 읽기가 가능하게 DB 열기
         ArrayList<Donation> result = null;
@@ -101,7 +102,8 @@ public class DonationDBHelper extends SQLiteOpenHelper {
                 node.donationCode = cursor.getInt(0);
                 node.donationDate = Timestamp.valueOf(cursor.getString(1));
                 node.userCode = cursor.getInt(2);
-                node.vsCode = cursor.getInt(3);
+                node.businessCode = cursor.getInt(3);
+                node.donationPoint = cursor.getInt(4);
 
                 result.add(node);
             }
