@@ -38,7 +38,7 @@ public class DonationDBHelper extends SQLiteOpenHelper {
                 "business_code INTEGER NOT NULL," +
                 "donation_point INTEGER NOT NULL," +
                 "FOREIGN KEY (user_code) REFERENCES USER (user_code) ON DELETE CASCADE," +
-                "FOREIGN KEY (business_code) REFERENCES BUSINESS (business_code) ON DELETE CASCADE," +
+                "FOREIGN KEY (business_code) REFERENCES BUSINESS (business_code) ON DELETE CASCADE" +
                 "); ";
 
         sqLiteDatabase.execSQL(SQL_CREATE_DONATION_TABLE);

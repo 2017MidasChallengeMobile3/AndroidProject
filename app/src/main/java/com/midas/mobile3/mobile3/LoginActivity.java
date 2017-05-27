@@ -669,16 +669,42 @@ public class LoginActivity extends AppCompatActivity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                 // TODO : 실제 로그인 해야됨
-                if(isChecked(editID.getText().toString()).booleanValue()==true) {//로그인 성공.
+                //if(isChecked(editID.getText().toString()).booleanValue()==true) {//로그인 성공.
                     Intent i = new Intent(LoginActivity.this, MainActivity.class);
                     i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     startActivity(i);
-                }
-                else{//로그인 실패.
-                    Toast.makeText(LoginActivity.this,"아이디 혹은 비밀번호가 틀립니다.",Toast.LENGTH_SHORT).show();
-                }
+                //}
+                //else{//로그인 실패.
+                    //Toast.makeText(LoginActivity.this,"아이디 혹은 비밀번호가 틀립니다.",Toast.LENGTH_SHORT).show();
+                //}
             }
         });
 

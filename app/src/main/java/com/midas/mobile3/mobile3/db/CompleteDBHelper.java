@@ -38,7 +38,7 @@ public class CompleteDBHelper extends SQLiteOpenHelper {
                 "user_code INTEGER NOT NULL," +
                 "vs_code INTEGER NOT NULL," +
                 "FOREIGN KEY (user_code) REFERENCES USER (user_code) ON DELETE CASCADE," +
-                "FOREIGN KEY (vs_code) REFERENCES VOLUNTARY (vs_code) ON DELETE CASCADE," +
+                "FOREIGN KEY (vs_code) REFERENCES VOLUNTARY (vs_code) ON DELETE CASCADE" +
                 "); ";
 
         sqLiteDatabase.execSQL(SQL_CREATE_COMPLETE_TABLE);
