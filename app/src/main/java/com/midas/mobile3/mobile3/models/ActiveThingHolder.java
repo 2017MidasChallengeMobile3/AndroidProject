@@ -42,7 +42,7 @@ public class ActiveThingHolder extends RecyclerView.ViewHolder{
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(mcon, VonuntaryContentActivity.class);
-                i.putExtra("data",data);
+                i.putExtra("data",data.voluntary);
                 mcon.startActivity(i);
             }
         });

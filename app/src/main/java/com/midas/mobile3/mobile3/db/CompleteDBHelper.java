@@ -120,4 +120,34 @@ public class CompleteDBHelper extends SQLiteOpenHelper {
 
         return result;
     }
+
+    public ArrayList<Complete> selectComplete(int userCode, int vsCode) {
+        // 읽기가 가능하게 DB 열기
+        ArrayList<Complete> result = null;
+        SQLiteDatabase db = getReadableDatabase();
+
+        // DB에 있는 데이터를 쉽게 처리하기 위해 Cursor를 사용하여 테이블에 있는 모든 데이터 출력
+        Cursor cursor = db.rawQuery("SELECT * " +
+                "FROM COMPLETE " +
+                "WHERE user_code = " + userCode + " AND vs_code = " + vsCode, null);
+
+        if (cursor.getCount() > 0) {
+            result = new ArrayList<Complete>();
+
+            Complete node = null;
+
+            while (cursor.moveToNext()) {
+                node = new Complete();
+
+                node.completeCode = cursor.getInt(0);
+                node.completeDate = Timestamp.valueOf(cursor.getString(1));
+                node.userCode = cursor.getInt(2);
+                node.vsCode = cursor.getInt(3);
+
+                result.add(node);
+            }
+        }
+
+        return result;
+    }
 }
