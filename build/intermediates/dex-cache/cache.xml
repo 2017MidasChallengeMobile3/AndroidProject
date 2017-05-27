@@ -2,22 +2,22 @@
 <items version="2" >
 
     <item
-        is-multidex="true"
-        jar="C:\Users\tjssm\AndroidStudioProjects\AndroidProject\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
-        jumboMode="true"
+        is-multidex="false"
+        jar="C:\Users\tmdgh\.gradle\caches\modules-2\files-2.1\com.squareup.picasso\picasso\2.5.2\7446d06ec8d4f7ffcc53f1da37c95f200dcb9387\picasso-2.5.2.jar"
+        jumboMode="false"
         optimize="true"
         revision="25.0.2"
-        sha1="caff8e51a24901cfc9cd7e1cf83d84f4cb0c103b">
-        <dex dex="C:\Users\tjssm\AndroidStudioProjects\AndroidProject\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_650a5b599603809b9442c757e86dfee4c2b47584\classes.dex" />
+        sha1="7446d06ec8d4f7ffcc53f1da37c95f200dcb9387">
+        <dex dex="C:\AndroidProjects\AndroidProject\app\build\intermediates\pre-dexed\debug\picasso-2.5.2_41527eadd5c7fe623bdc7cd429f93ce6fc42ab0d.jar" />
     </item>
     <item
-        is-multidex="true"
-        jar="C:\Users\tjssm\AndroidStudioProjects\AndroidProject\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
-        jumboMode="true"
+        is-multidex="false"
+        jar="C:\Users\tmdgh\.android\build-cache\6d1d446415a129bc3be02192ea8762bd56a1a80f\output\jars\classes.jar"
+        jumboMode="false"
         optimize="true"
         revision="25.0.2"
-        sha1="4d86d6a6205a95fb975ce27597bcd9aba5bd4cdf">
-        <dex dex="C:\Users\tjssm\AndroidStudioProjects\AndroidProject\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_0d27aa7e9f7c0611d07e395dbce27ab2fd46359e\classes.dex" />
+        sha1="d5d22a873f93271b4a339840ff29b3786258aac8">
+        <dex dex="C:\AndroidProjects\AndroidProject\app\build\intermediates\pre-dexed\debug\classes_c950592c913ee3e93e32ed0a5f701fa75b3347d9.jar" />
     </item>
 
 </items>

@@ -15,6 +15,7 @@ import com.midas.mobile3.mobile3.MainActivity;
 import com.midas.mobile3.mobile3.R;
 import com.midas.mobile3.mobile3.VoluntaryFragment;
 import com.midas.mobile3.mobile3.VonuntaryContentActivity;
+import com.midas.mobile3.mobile3.db.VoluntaryDBHelper;
 import com.midas.mobile3.mobile3.db_model.PointThing;
 import com.midas.mobile3.mobile3.db_model.Voluntary;
 
@@ -27,7 +28,7 @@ import java.util.Date;
 public class PointThingHolder extends RecyclerView.ViewHolder{
 
     PointThing data;
-    TextView txtDate, txtPoint;
+    TextView txtDate, txtPoint, txtName;
     Context mcon;
 
     public PointThingHolder(View itemView, final Context mcon) {
@@ -35,7 +36,7 @@ public class PointThingHolder extends RecyclerView.ViewHolder{
         this.mcon = mcon;
         txtDate = (TextView)itemView.findViewById(R.id.point_recycler_item_date);
         txtPoint = (TextView)itemView.findViewById(R.id.point_recycler_item_point);
-
+        txtName=(TextView)itemView.findViewById(R.id.point_recycler_item_name);
         /*itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -48,8 +49,9 @@ public class PointThingHolder extends RecyclerView.ViewHolder{
 
     public void setData(PointThing data){
         this.data = data;
+        VoluntaryDBHelper vdbh = new VoluntaryDBHelper(mcon);
         txtDate.setText(Common.dateToString(data.date));
-
+        txtName.setText(vdbh.selectVoluntaryInfo(data.code).voluntaryTitle.toString());
         if( data.sort == 1 ){
             txtPoint.setText("+ "+data.point+"P");
             txtPoint.setTextColor(Color.parseColor("#0000FF"));

@@ -21,16 +21,15 @@ public class PointHolder extends RecyclerView.ViewHolder{
 
     //TODO 데이터 모델 바꿔야함
     Voluntary data;
-    TextView txtTitle, txtDate, txtPoint, txtLeftPoint;
+    TextView txtTitle, txtDate, txtPoint;
     Context mcon;
 
     public PointHolder(View itemView, final Context mcon) {
         super(itemView);
         this.mcon = mcon;
-        txtTitle = (TextView)itemView.findViewById(R.id.point_title);
-        txtDate = (TextView)itemView.findViewById(R.id.point_date);
-        txtPoint = (TextView)itemView.findViewById(R.id.point_point);
-        txtLeftPoint = (TextView)itemView.findViewById(R.id.point_left_point);
+        txtTitle = (TextView)itemView.findViewById(R.id.point_recycler_item_name);
+        txtDate = (TextView)itemView.findViewById(R.id.point_recycler_item_date);
+        txtPoint = (TextView)itemView.findViewById(R.id.point_recycler_item_point);
 
         itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -52,6 +51,5 @@ public class PointHolder extends RecyclerView.ViewHolder{
         txtTitle.setText(data.voluntaryTitle);
         txtDate.setText(data.voluntaryReqStartDate+ " ~ " + data.voluntaryReqEndDate);
         txtPoint.setText(data.voluntaryPoint);
-        txtLeftPoint.setText(data.voluntaryPoint);
     }
 }
