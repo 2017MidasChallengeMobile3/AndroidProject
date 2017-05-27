@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 
 public class VoluntaryCheckFragment extends Fragment {
 
+    // TODO : 리사이클러뷰 만들어야됨
+
     public VoluntaryCheckFragment() {
         // Required empty public constructor
     }
