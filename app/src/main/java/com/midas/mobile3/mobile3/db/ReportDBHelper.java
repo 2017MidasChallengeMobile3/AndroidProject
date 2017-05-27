@@ -38,7 +38,7 @@ public class ReportDBHelper extends SQLiteOpenHelper {
                 "report_img_url_2 VARCHAR(300) NOT NULL," +
                 "report_img_url_3 VARCHAR(300) NOT NULL," +
                 "report_img_url_4 VARCHAR(300) NOT NULL," +
-                "report_img_url_5 VARCHAR(300) NOT NULL, " +
+                "report_img_url_5 VARCHAR(300) NOT NULL," +
                 "FOREIGN KEY (business_code) REFERENCES BUSINESS (business_code) ON DELETE CASCADE" +
                 "); ";
 

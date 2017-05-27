@@ -15,6 +15,7 @@ import com.midas.mobile3.mobile3.MainActivity;
 import com.midas.mobile3.mobile3.R;
 import com.midas.mobile3.mobile3.VoluntaryFragment;
 import com.midas.mobile3.mobile3.VonuntaryContentActivity;
+import com.midas.mobile3.mobile3.db.BusinessDBHelper;
 import com.midas.mobile3.mobile3.db.VoluntaryDBHelper;
 import com.midas.mobile3.mobile3.db_model.PointThing;
 import com.midas.mobile3.mobile3.db_model.Voluntary;
@@ -41,14 +42,20 @@ public class PointThingHolder extends RecyclerView.ViewHolder{
 
     public void setData(PointThing data){
         this.data = data;
-        VoluntaryDBHelper vdbh = new VoluntaryDBHelper(mcon);
-        txtDate.setText(Common.dateToString(data.date));
-        txtName.setText(vdbh.selectVoluntaryInfo(data.code).voluntaryTitle.toString());
+
         if( data.sort == 1 ){
+            VoluntaryDBHelper vdbh = new VoluntaryDBHelper(mcon);
+            txtDate.setText(Common.dateToString(data.date));
+            txtName.setText(vdbh.selectVoluntaryInfo(data.code).voluntaryTitle);
+
             txtPoint.setText("+ "+data.point+"P");
             txtPoint.setTextColor(Color.parseColor("#0000FF"));
         }
         else{
+            BusinessDBHelper bdbh = new BusinessDBHelper(mcon);
+            txtDate.setText(Common.dateToString(data.date));
+            txtName.setText(bdbh.selectBusiness(data.code).businessName);
+
             txtPoint.setText("- "+data.point+"P");
             txtPoint.setTextColor(Color.parseColor("#FF0000"));
         }
