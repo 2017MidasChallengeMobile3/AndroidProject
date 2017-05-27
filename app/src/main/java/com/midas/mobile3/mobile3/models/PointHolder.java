@@ -19,7 +19,6 @@ import java.text.SimpleDateFormat;
  */
 public class PointHolder extends RecyclerView.ViewHolder{
 
-    //TODO 데이터 모델 바꿔야함
     Voluntary data;
     TextView txtTitle, txtDate, txtPoint;
     Context mcon;
@@ -30,16 +29,6 @@ public class PointHolder extends RecyclerView.ViewHolder{
         txtTitle = (TextView)itemView.findViewById(R.id.point_recycler_item_name);
         txtDate = (TextView)itemView.findViewById(R.id.point_recycler_item_date);
         txtPoint = (TextView)itemView.findViewById(R.id.point_recycler_item_point);
-
-        itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // TODO : 결정해야됨 띄울지 말지
-//                Intent i = new Intent(mcon, VonuntaryContentActivity.class);
-//                i.putExtra("data",data);
-//                mcon.startActivity(i);
-            }
-        });
     }
 
     public void setData(Voluntary data){

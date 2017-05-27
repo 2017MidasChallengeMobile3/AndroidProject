@@ -100,6 +100,7 @@ public class BusinessActivity extends AppCompatActivity {
                     fab.setImageResource(R.drawable.ic_remove_black_24dp);
                     btnRequest.setText("기부 완료");
                     isDone=true;
+                    txtPoint.setText((data.businessCurPoint+val)+"원 / "+data.businessGoalPoint+"원");
                 }
             });
         }else{

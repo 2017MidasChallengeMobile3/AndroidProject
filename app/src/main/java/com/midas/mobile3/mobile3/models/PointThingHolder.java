@@ -37,14 +37,6 @@ public class PointThingHolder extends RecyclerView.ViewHolder{
         txtDate = (TextView)itemView.findViewById(R.id.point_recycler_item_date);
         txtPoint = (TextView)itemView.findViewById(R.id.point_recycler_item_point);
         txtName=(TextView)itemView.findViewById(R.id.point_recycler_item_name);
-        /*itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(mcon, VonuntaryContentActivity.class);
-                i.putExtra("data",data);
-                mcon.startActivity(i);
-            }
-        });*/
     }
 
     public void setData(PointThing data){
