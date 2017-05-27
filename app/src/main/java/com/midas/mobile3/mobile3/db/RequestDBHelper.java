@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import com.midas.mobile3.mobile3.db_model.Request;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 
 /**
@@ -31,6 +32,7 @@ public class RequestDBHelper extends SQLiteOpenHelper {
         final String SQL_CREATE_REQUEST_TABLE = "CREATE TABLE REQUEST (" +
                 "request_code INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "request_sort INTEGER NOT NULL," +
+                "request_date TIMESTAMP NOT NULL," +
                 "user_code INTEGER NOT NULL," +
                 "vs_code INTEGER NOT NULL," +
                 "FOREIGN KEY (user_code) REFERENCES USER (user_code) ON DELETE CASCADE," +
@@ -55,8 +57,8 @@ public class RequestDBHelper extends SQLiteOpenHelper {
         // 읽고 쓰기가 가능하게 DB 열기
         SQLiteDatabase db = getWritableDatabase();
         // DB에 입력한 값으로 행 추가
-        db.execSQL("INSERT INTO REQUEST(request_sort, user_code, vs_code) " +
-                "VALUES (1," + userCode + ", " + vsCode + ");");
+        db.execSQL("INSERT INTO REQUEST(request_sort, request_date, user_code, vs_code) " +
+                "VALUES (1, CURRENT_TIMESTAMP, " + userCode + ", " + vsCode + ");");
         db.close();
     }
 
@@ -89,8 +91,9 @@ public class RequestDBHelper extends SQLiteOpenHelper {
 
                 node.requestCode = cursor.getInt(0);
                 node.requestSort = cursor.getInt(1);
-                node.userCode = cursor.getInt(2);
-                node.vsCode = cursor.getInt(3);
+                node.requestDate = Timestamp.valueOf(cursor.getString(2));
+                node.userCode = cursor.getInt(3);
+                node.vsCode = cursor.getInt(4);
 
                 result.add(node);
             }
@@ -104,6 +107,13 @@ public class RequestDBHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = getWritableDatabase();
         // 입력한 항목과 일치하는 행의 가격 정보 수정
         db.execSQL("UPDATE REQUEST SET request_sort = " + sort + " WHERE request_code = " + requestCode + ";");
+        db.close();
+    }
+
+    public void updateRequestDate(int requestCode) {
+        SQLiteDatabase db = getWritableDatabase();
+        // 입력한 항목과 일치하는 행의 가격 정보 수정
+        db.execSQL("UPDATE REQUEST SET request_date = CURRENT_TIMESTAMP WHERE request_code = " + requestCode + ";");
         db.close();
     }
 }
