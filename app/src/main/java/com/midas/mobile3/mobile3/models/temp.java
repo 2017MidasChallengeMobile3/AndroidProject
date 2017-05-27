@@ -5,4 +5,5 @@ package com.midas.mobile3.mobile3.models;
  */
 
 public class temp {
+    //
 }

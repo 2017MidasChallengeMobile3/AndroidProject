@@ -4,11 +4,18 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.midas.mobile3.mobile3.controller.VoluntaryAdapter;
+
 public class VoluntaryFragment extends Fragment {
+
+    RecyclerView mRecyclerView;
+    VoluntaryAdapter mAdapter;
 
     public VoluntaryFragment() {
         // Required empty public constructor
@@ -22,7 +29,18 @@ public class VoluntaryFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_voluntary, container, false);
+        View v = inflater.inflate(R.layout.fragment_voluntary, container, false);
+        setLayout(v);
+
+
+        return v;
+    }
+
+    private void setLayout(View v){
+        mRecyclerView = (RecyclerView)v.findViewById(R.id.list);
+        mAdapter = new VoluntaryAdapter(getActivity());
+        mRecyclerView.setAdapter(mAdapter);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
     }
 
 }
