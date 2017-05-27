@@ -5,12 +5,15 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.view.MenuItem;
 
 import com.midas.mobile3.mobile3.controller.AdminVoluntaryAdapter;
 import com.midas.mobile3.mobile3.controller.PointThingAdapter;
 
 public class AdminVoluntaryActivity extends AppCompatActivity {
+
+    RecyclerView mRecyclerView;
+    AdminVoluntaryAdapter mAdapter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,16 +27,10 @@ public class AdminVoluntaryActivity extends AppCompatActivity {
         toolbar.setTitle("봉사활동 승인");
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-    }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
-            case android.R.id.home:
-                finish();
-                break;
-        }
-        return super.onOptionsItemSelected(item);
+        mRecyclerView = (RecyclerView)findViewById(R.id.list);
+        mAdapter = new AdminVoluntaryAdapter(this);
+        mRecyclerView.setAdapter(mAdapter);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
-
 }

@@ -43,8 +43,8 @@ public class RequestThingHolder extends RecyclerView.ViewHolder{
 
                 CompleteDBHelper cdbh = new CompleteDBHelper(mcon);
                 cdbh.insert(data.user.userCode, data.voluntary.voluntaryCode);
-
-
+                btnFail.setVisibility(View.GONE);
+                btnSuccess.setVisibility(View.GONE);
             }
         });
 
@@ -53,6 +53,8 @@ public class RequestThingHolder extends RecyclerView.ViewHolder{
             public void onClick(View v) {
                 RequestDBHelper rdbh = new RequestDBHelper(mcon);
                 rdbh.delete(data.requestCode);
+                btnFail.setVisibility(View.GONE);
+                btnSuccess.setVisibility(View.GONE);
             }
         });
     }
